@@ -5,36 +5,11 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_COP_H
 #define POO2_LABO4_GOBET_THOMAS_COP_H
 
+#include "Person.h"
 
 class Cop : public Person{
 
 public:
-
-    Cop(string name);
-
-    bool canDrive(){
-        return true;
-    }
-
-    bool isFamilyMember(){
-        return false;
-    }
-
-    bool isParent(){
-        return false;
-    }
-
-    bool isChild(){
-        return false;
-    }
-
-    bool isThief(){
-        return false;
-    }
-
-    bool isCop(){
-        return true;
-    }
 
 };
 

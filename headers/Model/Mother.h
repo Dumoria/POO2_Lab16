@@ -5,12 +5,12 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_PARENT_H
 #define POO2_LABO4_GOBET_THOMAS_PARENT_H
 
-#include "FamilyMember.h"
+#include "Parent.h"
 
-class Parent : public FamilyMember{
+class Mother : public Parent {
+    bool gender = 0;
 
 public:
-
-    Parent(std::string name, bool gender);
+    Mother(std::string name, bool gender);
 };
 #endif //POO2_LABO4_GOBET_THOMAS_PARENT_H
