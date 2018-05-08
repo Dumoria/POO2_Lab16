@@ -5,6 +5,7 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_BANK_H
 #define POO2_LABO4_GOBET_THOMAS_BANK_H
 
+<<<<<<< HEAD
 #include "Container.h"
 
 class Bank : public Container {
@@ -15,4 +16,6 @@ public:
     explicit Bank(std::initializer_list<Person> args);
 };
 
+=======
+>>>>>>> master
 #endif //POO2_LABO4_GOBET_THOMAS_BANK_H
