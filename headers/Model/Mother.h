@@ -2,15 +2,14 @@
 // Created by benja on 03.05.2018.
 //
 
-#ifndef POO2_LABO4_GOBET_THOMAS_PARENT_H
-#define POO2_LABO4_GOBET_THOMAS_PARENT_H
+#ifndef POO2_LABO4_GOBET_THOMAS_MOTHER_H
+#define POO2_LABO4_GOBET_THOMAS_MOTHER_H
 
-#include "Parent.h"
+#include "FamilyMember.h"
 
-class Mother : public Parent {
-    bool gender = 0;
+class Mother : public FamilyMember {
 
 public:
-    Mother(std::string name, bool gender);
+    explicit Mother(const std::string &name) : FamilyMember(name, 0) {};
 };
-#endif //POO2_LABO4_GOBET_THOMAS_PARENT_H
+#endif //POO2_LABO4_GOBET_THOMAS_MOTHER_H

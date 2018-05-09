@@ -6,14 +6,16 @@
 #define POO2_LABO4_GOBET_THOMAS_PERSON_H
 
 #include <string>
+#include <utility>
 
 class Person{
+protected:
     std::string name;
     bool gender;
     bool _canDrive = true;
 
 public:
-    Person(std::string name, bool gender) : name(name), gender(gender) {};
+    Person(std::string name, bool gender) : name(std::move(name)), gender(gender) {};
 
     bool getGender(){
         return gender;

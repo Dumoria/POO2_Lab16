@@ -8,11 +8,9 @@
 #include "Person.h"
 
 class Thief : public Person{
-    bool _canDrive = false;
 
 public:
-
-    Thief(std::string name);
+    Thief(const std::string &name, bool gender) : Person(name, gender), _canDrive(false) {};
 };
 
 

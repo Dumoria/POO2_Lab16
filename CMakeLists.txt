@@ -12,10 +12,9 @@ add_executable(POO2_lab16
         headers/Model/Cop.h
         headers/Model/FamilyMember.h
         headers/Model/Mother.h
-        headers/Model/Parent.h
         headers/Model/Person.h
         headers/Model/Rules.h
         headers/Model/Thief.h
         headers/View/View.h
         Bank.cpp
-        Controller.cpp)
+        Controller.cpp headers/Model/Father.h headers/Model/Daughter.h headers/Model/Son.h)

@@ -10,7 +10,7 @@
 class FamilyMember : public Person{
 public:
 
-    FamilyMember(std::string name, bool gender);
+    FamilyMember(const std::string &name, bool gender) : Person(name, gender) {};
 
 };
 
