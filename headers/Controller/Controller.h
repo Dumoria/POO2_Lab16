@@ -1,7 +1,16 @@
-//
-// Created by benja on 03.05.2018.
-//
+/*
+-----------------------------------------------------------------------------------------
+Laboratory  : POO2 - Laboratoire 16
+File        : Controller.h
+Author      : Thomas Benjamin, Gobet Alain
+Date        : 10.05.2018
+Class       : POO - A
 
+Goal        : Declaration of the controller
+
+Remark(s)   : -
+----------------------------------------------------------------------------------------
+*/
 #ifndef POO2_LABO4_GOBET_THOMAS_CONTROLLER_H
 #define POO2_LABO4_GOBET_THOMAS_CONTROLLER_H
 
@@ -15,7 +24,7 @@ private:
 
     int turn;
 
-    //Model
+    //Model, check si meilleur temps utiliser model ou directe class du mod ici
     Bank left;
     Bank right;
     Boat boat;
@@ -62,6 +71,7 @@ public:
     }
 
     void display();
+
     void nextTurn();
 
     void reinit(){

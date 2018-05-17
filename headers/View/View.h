@@ -1,6 +1,16 @@
-//
-// Created by benja on 03.05.2018.
-//
+/*
+-----------------------------------------------------------------------------------------
+Laboratory  : POO2 - Laboratoire 16
+File        : View.h
+Author      : Thomas Benjamin, Gobet Alain
+Date        : 10.05.2018
+Class       : POO - A
+
+Goal        : Declaration of the view
+
+Remark(s)   : -
+----------------------------------------------------------------------------------------
+*/
 
 #ifndef POO2_LABO4_GOBET_THOMAS_VIEW_H
 #define POO2_LABO4_GOBET_THOMAS_VIEW_H
@@ -34,7 +44,10 @@ public:
     }
 
     void bankDisplay(Bank bank){
-
+        /*Pour chaque personne de la bank
+         *  p.getName();
+         *
+         */
     }
 
     void boatDisplay(Boat boat){

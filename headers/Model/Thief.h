@@ -1,6 +1,16 @@
-//
-// Created by benja on 03.05.2018.
-//
+/*
+-----------------------------------------------------------------------------------------
+Laboratory  : POO2 - Laboratoire 16
+File        : Thief.h
+Author      : Thomas Benjamin, Gobet Alain
+Date        : 10.05.2018
+Class       : POO - A
+
+Goal        : Declaration of a thief
+
+Remark(s)   : -
+----------------------------------------------------------------------------------------
+*/
 
 #ifndef POO2_LABO4_GOBET_THOMAS_THIEF_H
 #define POO2_LABO4_GOBET_THOMAS_THIEF_H
@@ -11,7 +21,8 @@ class Thief : public Person{
 
 public:
 
-    Thief(std::string name);
+    explicit Thief(std::string name): Person(name){
+    }
 
 };
 
