@@ -11,7 +11,6 @@ add_executable(POO2_lab16
         headers/Model/Container.h
         headers/Model/Cop.h
         headers/Model/FamilyMember.h
-        headers/Model/Mother.h
         headers/Model/Parent.h
         headers/Model/Person.h
         headers/Model/Rules.h

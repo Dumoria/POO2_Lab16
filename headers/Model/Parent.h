@@ -14,16 +14,5 @@ public:
     Parent(std::string name, bool gender);
 
 
-    bool canDrive(){
-        return true;
-    }
-
-    bool isParent(){
-        return true;
-    }
-
-    bool isChild(){
-        return false;
-    }
 };
 #endif //POO2_LABO4_GOBET_THOMAS_PARENT_H

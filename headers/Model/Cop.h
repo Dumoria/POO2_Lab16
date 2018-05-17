@@ -15,29 +15,6 @@ public:
 
     Cop(std::string name);
 
-    bool canDrive(){
-        return true;
-    }
-
-    bool isFamilyMember(){
-        return false;
-    }
-
-    bool isParent(){
-        return false;
-    }
-
-    bool isChild(){
-        return false;
-    }
-
-    bool isThief(){
-        return false;
-    }
-
-    bool isCop(){
-        return true;
-    }
 
 };
 

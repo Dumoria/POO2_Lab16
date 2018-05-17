@@ -8,21 +8,14 @@
 
 #include <string>
 
-class Person{
+class Person {
+
     std::string name;
-    bool gender;
-    bool _canDrive = true;
 
 public:
-    Person(std::string name, bool gender) : name(name), gender(gender) {};
+    Person(std::string name);
 
-    bool getGender(){
-        return gender;
-    }
-
-    bool canDrive() {
-        return _canDrive;
-    }
+};
 
 
 
