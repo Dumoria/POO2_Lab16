@@ -5,14 +5,8 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_FAMILYMEMBER_H
 #define POO2_LABO4_GOBET_THOMAS_FAMILYMEMBER_H
 
-<<<<<<< HEAD
+
 #include "Person.h"
-
-class FamilyMember : public Person{
-public:
-
-    FamilyMember(std::string name, bool gender);
-=======
 
 class FamilyMember : public Person{
 
@@ -22,7 +16,7 @@ private:
 
 public:
 
-    FamilyMember(string name, bool genre);
+    FamilyMember(std::string name, bool gender);
 
     virtual bool canDrive() = 0;
     virtual bool isParent() = 0;
@@ -40,7 +34,7 @@ public:
     bool getGenre(){
         return genre;
     }
->>>>>>> master
+
 
 };
 

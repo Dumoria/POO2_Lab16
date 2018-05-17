@@ -5,18 +5,15 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_COP_H
 #define POO2_LABO4_GOBET_THOMAS_COP_H
 
-<<<<<<< HEAD
+
 #include "Person.h"
-=======
->>>>>>> master
+
 
 class Cop : public Person{
 
 public:
 
-<<<<<<< HEAD
-=======
-    Cop(string name);
+    Cop(std::string name);
 
     bool canDrive(){
         return true;
@@ -42,7 +39,6 @@ public:
         return true;
     }
 
->>>>>>> master
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_COP_H

@@ -5,7 +5,7 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_BOAT_H
 #define POO2_LABO4_GOBET_THOMAS_BOAT_H
 
-<<<<<<< HEAD
+
 #include "Container.h"
 
 class Boat : public Container {
@@ -16,6 +16,5 @@ public:
     explicit Boat(unsigned short max) : max(max) {};
 };
 
-=======
->>>>>>> master
+
 #endif //POO2_LABO4_GOBET_THOMAS_BOAT_H
