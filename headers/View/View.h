@@ -7,6 +7,8 @@
 
 #include <string>
 #include <iostream>
+#include "../Model/Bank.h"
+#include "../Model/Boat.h"
 
 const std::string DELIM_LINE = "-----------------------------------------------------------";
 const std::string DELIM_LINE_THICK = "===========================================================";
@@ -24,18 +26,18 @@ public:
     void initialDisplay(){
         menuDisplay();
         std::cout << DELIM_LINE << std:: endl;
-        
+
     }
 
     void menuDisplay(){
         std::cout << MENU << std::endl;
     }
 
-    void bankDisplay(){
+    void bankDisplay(Bank bank){
 
     }
 
-    void boatDisplay(){
+    void boatDisplay(Boat boat){
 
     }
 
