@@ -23,13 +23,17 @@ Remark(s)   : -
 enum Gender {F, M};
 
 class Person {
+    friend class Container;
 protected:
     std::string name;
     Gender gender = M;
     bool _canDrive;
 
+public:
     explicit Person(std::string name) : name(std::move(name)) {};
     Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
+
+    bool operator==(const Person& o);
 
     friend std::ostream& operator << (std::ostream& os, const Person& person);
 

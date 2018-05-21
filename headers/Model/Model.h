@@ -27,6 +27,12 @@ public:
         left->push_back({pere, mere, paul, pierre, julie, jeanne, policier, voleur});
     }
 
+    ~Model() {
+        delete left;
+        delete right;
+        delete boat;
+    }
+
     Bank* getRightBank(){
         return right;
     }

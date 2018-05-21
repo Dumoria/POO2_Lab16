@@ -20,9 +20,16 @@ Remark(s)   : -
 #include "headers/Model/Thief.h"
 
 int main() {
-    Model model = Model();
+    bool exit = false;
+    std::string cmd;
 
+    Model model;
     Controller controller(model);
+
+    while (!exit) {
+        std::cin >> cmd;
+        exit = controller.command(cmd);
+    }
 
     return EXIT_SUCCESS;
 }

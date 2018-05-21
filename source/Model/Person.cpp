@@ -14,6 +14,10 @@ Remark(s)   : -
 
 #include "../../headers/Model/Person.h"
 
+bool Person::operator==(const Person& o) {
+    return this == &o;
+}
+
 std::ostream& operator << (std::ostream& os, const Person& person) {
     os << person.name;
 

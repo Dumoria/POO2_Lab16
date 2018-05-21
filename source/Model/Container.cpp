@@ -27,26 +27,34 @@ void Container::push_back(std::initializer_list<Person> args) {
     }
 }
 
+void Container::push_back(const Person &person) {
+    people.push_back(person);
+}
+
+void Container::remove(const Person &person) {
+    people.remove(person);
+}
+
 bool Container::operator==(const Container& o) {
     return this == &o;
 };
 
-std::ostream& operator << (std::ostream& os, const Container& container) {
-    os << container.name << ":";
-
-    for (const Person &p: container.people) {
+std::ostream& operator << (std::ostream& os, const std::list<Person> &people) {
+    for (const Person &p: people) {
         os << " " << p;
     }
+
+    return os;
+}
+
+std::ostream& operator << (std::ostream& os, const Container& container) {
+    os << container.name << ":" << container.people;
 
     return os;
 };
 
 std::ostream& operator << (std::ostream& os, const Container* container) {
-    os << container->name << ":";
-
-    for (const Person &p: container->people) {
-        os << " " << p;
-    }
+    os << container->name << ":" << container->people;
 
     return os;
 };

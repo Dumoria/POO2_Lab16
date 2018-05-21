@@ -33,6 +33,8 @@ private:
 public:
     explicit Controller(Model model);
 
+    bool command(const std::string &cmd) const;
+
     Controller controller() {
 
         showMenu();
@@ -42,7 +44,7 @@ public:
 
         switch(cmd){
             case 'p':
-                display();
+                view.display();
                 break;
             case 'e':
 

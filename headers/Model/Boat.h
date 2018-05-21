@@ -26,10 +26,12 @@ public:
     explicit Boat(std::string name) : Container(std::move(name)) {max = 2;};
     Boat(std::string name, Bank *currentBank) : Container(std::move(name)), currentBank(currentBank) {max = 2;};
 
-    void embark(const Person& person) const;
-    void debark(const Person& person) const;
     void setCurrentBank(Bank* bank);
     Bank* getCurrentBank();
+    void embark(const Person& person);
+    void debark(const Person& person);
+
+    friend std::ostream& operator << (std::ostream& os, const Boat* boat);
 };
 
 

@@ -34,7 +34,10 @@ public:
     virtual ~Container() {};
 
     void push_back(std::initializer_list<Person> args);
+    void push_back(const Person &person);
+    void remove(const Person &person);
     bool operator==(const Container& o);
+    friend std::ostream& operator << (std::ostream& os, const std::list<Person> &people);
     friend std::ostream& operator << (std::ostream& os, const Container& container);
     friend std::ostream& operator << (std::ostream& os, const Container* container);
 

@@ -35,39 +35,43 @@ class View{
 public:
     explicit View(const Model &model) : model(model) {};
 
-    void initialDisplay() {
+    void initialDisplay() const {
         menuDisplay();
         display();
     }
 
-    void menuDisplay() {
+    void menuDisplay() const {
         std::cout << MENU << std::endl;
     }
 
-    void display()  {
+    void display() const {
         bankDisplay(model.left);
         riverDisplay();
         bankDisplay(model.right);
     }
 
-    void bankDisplay(Bank *bank) {
+    void bankDisplay(Bank *bank) const {
         std::cout << DELIM_LINE << std::endl;
         std::cout << bank << std::endl;
         std::cout << DELIM_LINE << std::endl;
     }
 
-    void riverDisplay() {
+    void riverDisplay() const {
         boatDisplay(model.left);
         std::cout << DELIM_LINE_THICK << std::endl;
         boatDisplay(model.right);
     }
 
-    void boatDisplay(Bank *bank) {
+    void boatDisplay(Bank *bank) const {
         if (model.boat->getCurrentBank() == bank) {
             std::cout << model.boat << std::endl;
         } else {
             std::cout << std::endl;
         }
+    }
+
+    void messageDisplay(std::string &msg) const {
+        std::cout << "### " << msg;
     }
 
 };
