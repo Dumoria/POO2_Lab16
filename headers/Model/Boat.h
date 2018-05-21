@@ -6,13 +6,16 @@
 #define POO2_LABO4_GOBET_THOMAS_BOAT_H
 
 #include "Container.h"
+#include "Bank.h"
 
 class Boat : public Container {
-    unsigned short max = 2;
+    Bank* currentBank;
 
 public:
-    Boat();
-    explicit Boat(unsigned short max) : max(max) {};
+    explicit Boat(std::string& name, Bank* currentBank) : Container(name), currentBank(currentBank), max(2) {};
+
+    virtual void embark(const Person& person);
+    virtual void debark(const Person& person);
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_BOAT_H

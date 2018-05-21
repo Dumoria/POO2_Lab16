@@ -6,13 +6,22 @@
 #define POO2_LABO4_GOBET_THOMAS_CONTAINER_H
 
 #include <list>;
+#include <string>;
 #include "Person.h"
 
 class Container {
-    std::list<Person>;
-    unsigned short max;
+protected:
+    const std::string name;
+    std::list<Person> people;
+    unsigned short max = 0;
 
 public:
+    explicit Container(std::string& name) : name(std::move(name)) {};
+    Container(std::string& name, std::initializer_list<Person> args) : Container(name) {
+        for (const Person* val = args.begin(); val != args.end(); ++val) {
+            people.push_back(*val);
+        }
+    };
     virtual ~Container();
 };
 

@@ -8,11 +8,9 @@
 #include "Container.h"
 
 class Bank : public Container {
-    unsigned short max = 0; // 0 si infini
-
 public:
-    Bank();
-    explicit Bank(std::initializer_list<Person> args);
+    Bank(std::string& name) : Container(name) {};
+    Bank(std::string& name, std::initializer_list<Person> args) : Container(name, args) {};
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_BANK_H
