@@ -16,6 +16,7 @@ Remark(s)   : -
 #define POO2_LABO4_GOBET_THOMAS_PERSON_H
 
 
+#include <iostream>
 #include <string>
 #include <utility>
 
@@ -27,8 +28,10 @@ protected:
     Gender gender = M;
     bool _canDrive;
 
-    Person(std::string name) : name(std::move(name)) {};
+    explicit Person(std::string name) : name(std::move(name)) {};
     Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
+
+    friend std::ostream& operator << (std::ostream& os, const Person& person);
 
     std::string getName(){
         return name;

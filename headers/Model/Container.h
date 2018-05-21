@@ -21,19 +21,23 @@ Remark(s)   : -
 #include "Person.h"
 
 class Container {
+    friend class Person;
 protected:
     const std::string name;
     std::list<Person> people;
     unsigned short max = 0;
 
 public:
+    Container() {};
     explicit Container(std::string name) : name(std::move(name)) {};
-    Container(std::string& name, std::initializer_list<Person> args) : Container(name) {
-        for (const Person* val = args.begin(); val != args.end(); ++val) {
-            people.push_back(*val);
-        }
-    };
+    Container(std::string& name, std::initializer_list<Person> args);
     virtual ~Container() {};
+
+    void push_back(std::initializer_list<Person> args);
+    bool operator==(const Container& o);
+    friend std::ostream& operator << (std::ostream& os, const Container& container);
+    friend std::ostream& operator << (std::ostream& os, const Container* container);
+
 };
 
 

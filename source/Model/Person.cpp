@@ -6,16 +6,16 @@ Author      : Thomas Benjamin, Gobet Alain
 Date        : 10.05.2018
 Class       : POO - A
 
-Goal        : Implementation of the controller
+Goal        : Implementation of the person
 
 Remark(s)   : -
 ----------------------------------------------------------------------------------------
 */
 
-#include <utility>
-#include "../../headers/Controller/Controller.h"
-#include "../../headers/view/View.h"
+#include "../../headers/Model/Person.h"
 
-Controller::Controller(Model model) : model(model), view(View(model)) {
-    view.initialDisplay();
+std::ostream& operator << (std::ostream& os, const Person& person) {
+    os << person.name;
+
+    return os;
 };

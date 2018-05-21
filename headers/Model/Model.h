@@ -5,56 +5,51 @@
 #ifndef POO2_LAB16_MODEL_H
 #define POO2_LAB16_MODEL_H
 
-class Model{
+#include "Parent.h"
+#include "Child.h"
+#include "Cop.h"
+#include "Thief.h"
 
-private:
-    Bank right;
-    Bank left;
-    Boat boat;
+class Model{
+    friend class View;
+
+    Bank* left{};
+    Bank* right{};
+    Boat* boat{};
 
 public:
 
-    Model model(){
-        Parent pere("Père", 0);
-        Parent mere("Mère", 1);
-
-        Child paul("Paul", 0);
-        Child pierre("Pierre", 0);
-
-        Child julie("Julie", 1);
-        Child jeanne("Jeanne", 1);
-
-        Thief thief("Voleur");
-        Cop cop("Policier");
-
-        right = new Bank(); //fill with personns, check for insertion in bank
-        left = new Bank();
-        Boat = new Boat();
+    Model() : left(new Bank("Left")), right(new Bank("right")), boat(new Boat("Boat", left)) {
+        Parent pere("pere", M), mere("mere", F);
+        Child paul("paul", M), pierre("pierre", M), julie("julie", F), jeanne("jeanne", F);
+        Cop policier("policier");
+        Thief voleur("voleur");
+        left->push_back({pere, mere, paul, pierre, julie, jeanne, policier, voleur});
     }
 
-    Bank getRightBank(){
+    Bank* getRightBank(){
         return right;
     }
 
-    Bank getLeftBank(){
+    Bank* getLeftBank(){
         return left;
     }
 
-    Boat getBoat(){
+    Boat* getBoat(){
         return boat;
     }
 
-    void setRightBank(Bank bank){
-        right = bank;
-    }
-
-    void setLeftBank(Bank bank){
-        left = bank;
-    }
-
-    void setBoat(Boat boat){
-        this->boat = boat;
-    }
+    //void setRightBank(Bank bank){
+    //    right = bank;
+    //}
+//
+    //void setLeftBank(Bank bank){
+    //    left = bank;
+    //}
+//
+    //void setBoat(Boat boat){
+    //    this->boat = boat;
+    //}
 
 };
 

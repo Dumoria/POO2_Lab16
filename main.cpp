@@ -13,21 +13,16 @@ Remark(s)   : -
 */
 
 #include <string>
-#include "headers/controller/Controller.h"
+#include "headers/Controller/Controller.h"
 #include "headers/model/Parent.h"
 #include "headers/Model/Child.h"
 #include "headers/Model/Cop.h"
 #include "headers/Model/Thief.h"
 
 int main() {
-    Parent pere("pere", M), mere("mere", F);
-    Child paul("paul", M), pierre("pierre", M), julie("julie", F), jeanne("jeanne", F);
-    Cop policier("policier");
-    Thief voleur("voleur");
-    Bank left("Left", {pere, mere, paul, pierre, julie, jeanne, policier, voleur}), right("Right");
-    Boat boat("Bateau", left);
+    Model model = Model();
 
-    Controller controller(left, right, boat);
+    Controller controller(model);
 
     return EXIT_SUCCESS;
 }

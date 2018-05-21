@@ -6,16 +6,18 @@ Author      : Thomas Benjamin, Gobet Alain
 Date        : 10.05.2018
 Class       : POO - A
 
-Goal        : Implementation of the controller
+Goal        : Implementation of the boat
 
 Remark(s)   : -
 ----------------------------------------------------------------------------------------
 */
 
-#include <utility>
-#include "../../headers/Controller/Controller.h"
-#include "../../headers/view/View.h"
+#include "../../headers/Model/Boat.h"
 
-Controller::Controller(Model model) : model(model), view(View(model)) {
-    view.initialDisplay();
-};
+void Boat::setCurrentBank(Bank *bank) {
+    currentBank = bank;
+}
+
+Bank* Boat::getCurrentBank() {
+    return currentBank;
+}

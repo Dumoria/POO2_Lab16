@@ -17,22 +17,21 @@ Remark(s)   : -
 #include "../Model/Boat.h"
 #include "../Model/Bank.h"
 #include "../View/View.h"
+#include "../Model/Model.h"
 
 class Controller {
-
+friend class View;
 private:
     int turn = 0;
 
     //Model, check si meilleur temps utiliser model ou directe class du mod ici
-    Bank left;
-    Bank right;
-    Boat boat;
+    Model model;
 
     //View
     View view;
 
 public:
-    Controller(Bank left, Bank right, Boat boat) : left(left), right(right), boat(boat) {};
+    explicit Controller(Model model);
 
     Controller controller() {
 

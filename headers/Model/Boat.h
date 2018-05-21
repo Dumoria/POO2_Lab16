@@ -20,13 +20,16 @@ Remark(s)   : -
 #include "Bank.h"
 
 class Boat : public Container {
-    Bank currentBank;
+    Bank* currentBank;
 
 public:
-    Boat(std::string name, Bank currentBank) : Container(std::move(name)), currentBank(std::move(currentBank)) {max = 2;};
+    explicit Boat(std::string name) : Container(std::move(name)) {max = 2;};
+    Boat(std::string name, Bank *currentBank) : Container(std::move(name)), currentBank(currentBank) {max = 2;};
 
-    void embark(const Person& person);
-    void debark(const Person& person);
+    void embark(const Person& person) const;
+    void debark(const Person& person) const;
+    void setCurrentBank(Bank* bank);
+    Bank* getCurrentBank();
 };
 
 
