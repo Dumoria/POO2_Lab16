@@ -16,5 +16,4 @@ add_executable(POO2_lab16
         headers/Model/Rule.h
         headers/Model/Thief.h
         headers/View/View.h
-        Bank.cpp
-        Controller.cpp)
+        source/controller/Controller.cpp main.cpp)

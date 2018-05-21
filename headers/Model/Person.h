@@ -19,20 +19,22 @@ Remark(s)   : -
 #include <string>
 #include <utility>
 
+enum Gender {F, M};
+
 class Person {
 protected:
     std::string name;
-    bool gender;
+    Gender gender = M;
     bool _canDrive;
 
     Person(std::string name) : name(std::move(name)) {};
-    Person(std::string name, bool gender) : name(std::move(name)), gender(gender) {};
+    Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
 
     std::string getName(){
         return name;
     }
 
-    bool getGender() {
+    Gender getGender() {
         return gender;
     }
 

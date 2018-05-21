@@ -1,22 +1,32 @@
-//
-// Created by benja on 03.05.2018.
-//
+/*
+-----------------------------------------------------------------------------------------
+Laboratory  : POO2 - Laboratoire 16
+File        : Cop.h
+Author      : Thomas Benjamin, Gobet Alain
+Date        : 10.05.2018
+Class       : POO - A
 
+Goal        : Declaration of a boat
+
+Remark(s)   : -
+----------------------------------------------------------------------------------------
+*/
 #ifndef POO2_LABO4_GOBET_THOMAS_BOAT_H
 #define POO2_LABO4_GOBET_THOMAS_BOAT_H
 
 
+#include <utility>
 #include "Container.h"
 #include "Bank.h"
 
 class Boat : public Container {
-    Bank* currentBank;
+    Bank currentBank;
 
 public:
-    explicit Boat(std::string& name, Bank* currentBank) : Container(name), currentBank(currentBank), max(2) {};
+    Boat(std::string name, Bank currentBank) : Container(std::move(name)), currentBank(std::move(currentBank)) {max = 2;};
 
-    virtual void embark(const Person& person);
-    virtual void debark(const Person& person);
+    void embark(const Person& person);
+    void debark(const Person& person);
 };
 
 

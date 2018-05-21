@@ -16,13 +16,14 @@ Remark(s)   : -
 #define POO2_LABO4_GOBET_THOMAS_PARENT_H
 
 
+#include <utility>
 #include "FamilyMember.h"
 
 
 class Parent : public FamilyMember{
 
 public:
-    Parent(const std::string &name, bool gender) : FamilyMember(name, gender), _canDrive(true) {};
+    Parent(std::string name, Gender gender) : FamilyMember(std::move(name), gender) {_canDrive = true;};
 
 };
 

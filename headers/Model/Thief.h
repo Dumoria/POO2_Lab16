@@ -15,12 +15,13 @@ Remark(s)   : -
 #ifndef POO2_LABO4_GOBET_THOMAS_THIEF_H
 #define POO2_LABO4_GOBET_THOMAS_THIEF_H
 
+#include <utility>
 #include "Person.h"
 
 class Thief : public Person{
 
 public:
-    Thief(const std::string name) : Person(name), _canDrive(false) {};
+    explicit Thief(std::string name) : Person(std::move(name)) {_canDrive = false;};
 
 };
 

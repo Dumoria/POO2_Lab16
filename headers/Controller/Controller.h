@@ -18,11 +18,10 @@ Remark(s)   : -
 #include "../Model/Bank.h"
 #include "../View/View.h"
 
-class Controller{
+class Controller {
 
 private:
-
-    int turn;
+    int turn = 0;
 
     //Model, check si meilleur temps utiliser model ou directe class du mod ici
     Bank left;
@@ -33,8 +32,9 @@ private:
     View view;
 
 public:
+    Controller(Bank left, Bank right, Boat boat) : left(left), right(right), boat(boat) {};
 
-    Controller controller(){
+    Controller controller() {
 
         showMenu();
         display();
@@ -75,9 +75,9 @@ public:
     void nextTurn();
 
     void reinit(){
-        left.reinit();
-        right.reinit();
-        boat.reinit();
+        //left.reinit();
+        //right.reinit();
+        //boat.reinit();
     }
 
     void quit();

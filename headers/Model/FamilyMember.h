@@ -15,11 +15,12 @@ Remark(s)   : -
 #define POO2_LABO4_GOBET_THOMAS_FAMILYMEMBER_H
 
 
+#include <utility>
 #include "Person.h"
 
 class FamilyMember : public Person{
 protected:
-    FamilyMember(std::string name, bool gender): Person(name, gender) {};
+    FamilyMember(std::string name, Gender gender): Person(std::move(name), gender) {};
 
 };
 
