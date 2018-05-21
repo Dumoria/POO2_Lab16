@@ -15,16 +15,24 @@ Remark(s)   : -
 #ifndef POO2_LABO4_GOBET_THOMAS_RULES_H
 #define POO2_LABO4_GOBET_THOMAS_RULES_H
 
-#include <string>;
-#include <list>;
+#include <string>
+#include <list>
 #include "Container.h"
 
+typedef bool (*ruleFunctionDef)(Container);
 
 class Rule {
-    std::string command;
-    Container container;
-    void *(functionPtr)();
+    char command;
+    Container *container;
+    ruleFunctionDef ruleFunction;
+    std::string errorMessage;
 
+public:
+    Rule(const char &command, Container *container, ruleFunctionDef ruleFunction, const std::string &errorMessage);
+
+    bool checkRule();
+    char getCommand();
+    std::string returnMessage();
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_RULES_H

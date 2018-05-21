@@ -23,13 +23,13 @@ Bank* Boat::getCurrentBank() {
 }
 
 void Boat::embark(const Person& person) {
-    currentBank->remove(person);
     push_back(person);
+    currentBank->remove(person);
 }
 
 void Boat::debark(const Person& person) {
-    remove(person);
     currentBank->push_back(person);
+    remove(person);
 }
 
 std::ostream& operator << (std::ostream& os, const Boat* boat) {

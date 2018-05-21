@@ -14,26 +14,38 @@ Remark(s)   : -
 #ifndef POO2_LABO4_GOBET_THOMAS_CONTROLLER_H
 #define POO2_LABO4_GOBET_THOMAS_CONTROLLER_H
 
+#include <list>
 #include "../Model/Boat.h"
 #include "../Model/Bank.h"
 #include "../View/View.h"
 #include "../Model/Model.h"
+#include "../Model/Rule.h"
+
+struct Commande {
+
+};
 
 class Controller {
 friend class View;
 private:
-    int turn = 0;
+    unsigned short int turn = 0;
 
     //Model, check si meilleur temps utiliser model ou directe class du mod ici
-    Model model;
+    const Model model;
 
     //View
-    View view;
+    const View view;
+
+    // command list
+    std::list<Commande> commands;
+
+    // rule list
+    std::list<Rule> rules;
 
 public:
-    explicit Controller(Model model);
+    explicit Controller(const Model &model);
 
-    bool command(const std::string &cmd) const;
+    const bool command(const std::string &cmd);
 
     Controller controller() {
 
@@ -56,6 +68,7 @@ public:
 
                 break;
             case 'r':
+
                 break;
             case 'q':
                 break;
@@ -67,11 +80,11 @@ public:
         }
     }
 
-    void showMenu(){
-        view.menuDisplay();
-    }
+    void setRules();
 
-    void display();
+    void showMenu() const;
+
+    void display() const;
 
     void nextTurn();
 

@@ -33,9 +33,13 @@ public:
     explicit Person(std::string name) : name(std::move(name)) {};
     Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
 
-    bool operator==(const Person& o);
+    bool operator==(const Person &o) const;
+    bool operator!=(const Person &o) const;
+    bool operator==(const std::string &s) const;
+    bool operator!=(const std::string &s) const;
 
     friend std::ostream& operator << (std::ostream& os, const Person& person);
+    friend std::ostream& operator << (std::ostream& os, const Person* person);
 
     std::string getName(){
         return name;

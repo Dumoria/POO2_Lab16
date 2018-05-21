@@ -12,6 +12,7 @@ Remark(s)   : -
 ----------------------------------------------------------------------------------------
 */
 
+#include <list>
 #include <string>
 #include <iostream>
 #include "../../headers/Model/Person.h"
@@ -20,6 +21,10 @@ Remark(s)   : -
 Container::Container(std::string& name, std::initializer_list<Person> args) : Container(name) {
         push_back(args);
 };
+
+const std::list<Person> Container::getPeople() const {
+    return people;
+}
 
 void Container::push_back(std::initializer_list<Person> args) {
     for (const auto &arg : args) {

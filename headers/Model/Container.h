@@ -33,6 +33,7 @@ public:
     Container(std::string& name, std::initializer_list<Person> args);
     virtual ~Container() {};
 
+    const std::list<Person> getPeople() const;
     void push_back(std::initializer_list<Person> args);
     void push_back(const Person &person);
     void remove(const Person &person);

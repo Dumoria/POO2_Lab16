@@ -13,6 +13,7 @@ Remark(s)   : -
 */
 
 #include <string>
+#include <iostream>
 #include "headers/Controller/Controller.h"
 #include "headers/model/Parent.h"
 #include "headers/Model/Child.h"
@@ -27,8 +28,9 @@ int main() {
     Controller controller(model);
 
     while (!exit) {
-        std::cin >> cmd;
-        exit = controller.command(cmd);
+        std::getline(std::cin, cmd);
+        controller.command(cmd);
+        exit = false;
     }
 
     return EXIT_SUCCESS;

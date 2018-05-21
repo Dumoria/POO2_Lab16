@@ -50,6 +50,10 @@ public:
         bankDisplay(model.right);
     }
 
+    void turnDisplay(short unsigned int turn) const {
+        std::cout << turn << "> ";
+    }
+
     void bankDisplay(Bank *bank) const {
         std::cout << DELIM_LINE << std::endl;
         std::cout << bank << std::endl;
@@ -71,7 +75,7 @@ public:
     }
 
     void messageDisplay(std::string &msg) const {
-        std::cout << "### " << msg;
+        std::cout << "### " << msg << std::endl;
     }
 
 };

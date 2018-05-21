@@ -22,4 +22,5 @@ add_executable(POO2_lab16
         source/Model/Boat.cpp
         source/Model/Container.cpp
         source/Model/Person.cpp
+        source/Model/Rule.cpp
         )

@@ -12,6 +12,7 @@
 
 class Model{
     friend class View;
+    friend class Controller;
 
     Bank* left{};
     Bank* right{};
