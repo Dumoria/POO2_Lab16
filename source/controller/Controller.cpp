@@ -12,6 +12,7 @@ Remark(s)   : -
 ----------------------------------------------------------------------------------------
 */
 
+#include <list>
 #include <utility>
 #include <algorithm>
 #include "../../headers/Controller/Controller.h"
@@ -24,9 +25,9 @@ Controller::Controller(const Model &model) : model(model), view(View(model)) {
 };
 
 const bool Controller::command(const std::string &cmd) {
-    bool exit = false, error = false;
+    bool exit = false, error = false, canDrive;
     std::string msg, person;
-    std::list<Person> bankPeople = model.boat->getCurrentBank()->getPeople(),
+    std::list<Person*> bankPeople = model.boat->getCurrentBank()->getPeople(),
             boatPeople = model.boat->getPeople();
 
     switch (cmd.at(0)) {
@@ -36,14 +37,18 @@ const bool Controller::command(const std::string &cmd) {
         case 'e':
             if (cmd.length() > 2) {
                 person = cmd.substr(2);
-                std::cout << person;
                 auto it = find(bankPeople.begin(), bankPeople.end(), person);
 
-                if (it == bankPeople.end()) {
-                    error = true;
-                    msg = "La personne " + person + " n'existe pas ou n'est pas presente sur la berge";
+                if (boatPeople.size() < model.boat->getMax()) {
+                    if (it == bankPeople.end()) {
+                        error = true;
+                        msg = "La personne " + person + " n'existe pas ou n'est pas presente sur la berge";
+                    } else {
+                        model.boat->embark(*it);
+                    }
                 } else {
-                    model.boat->embark(*it);
+                    error = true;
+                    msg = "plus de place dans le bateau";
                 }
             } else {
                 error = true;
@@ -54,7 +59,6 @@ const bool Controller::command(const std::string &cmd) {
             // factoriser
             if (cmd.length() > 2) {
                 person = cmd.substr(2);
-                std::cout << person;
                 auto it = find(boatPeople.begin(), boatPeople.end(), person);
 
                 if (it == boatPeople.end()) {
@@ -65,11 +69,24 @@ const bool Controller::command(const std::string &cmd) {
                 }
             } else {
                 error = true;
-                msg = "nom de la personne a embarquer non precisee";
+                msg = "nom de la personne a debarquer non precisee";
             }
             break;
         case 'm':
+            canDrive = false;
+            for (const Person *p : boatPeople) {
+                if (p->canDrive()) {
+                    canDrive = true;
+                    break;
+                }
+            }
 
+            if (canDrive) {
+                model.boat->setCurrentBank(model.boat->getCurrentBank() == model.left ? model.right : model.left);
+            } else {
+                error = true;
+                msg = "personne ne peut conduire le bateau";
+            }
             break;
         case 'r':
 

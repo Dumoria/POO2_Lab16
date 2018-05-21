@@ -18,25 +18,38 @@ Remark(s)   : -
 #include "../../headers/Model/Person.h"
 #include "../../headers/Model/Container.h"
 
-Container::Container(std::string& name, std::initializer_list<Person> args) : Container(name) {
+Container::Container(std::string& name, std::initializer_list<Person*> args) : Container(name) {
         push_back(args);
 };
 
-const std::list<Person> Container::getPeople() const {
+Container::~Container() {
+    people.remove_if(deleteAll);
+}
+
+bool Container::deleteAll(Person* p) {
+    delete p;
+    return true;
+}
+
+std::list<Person*> Container::getPeople() {
     return people;
 }
 
-void Container::push_back(std::initializer_list<Person> args) {
+const unsigned short Container::getMax() const {
+    return max;
+}
+
+void Container::push_back(std::initializer_list<Person*> args) {
     for (const auto &arg : args) {
         people.push_back(arg);
     }
 }
 
-void Container::push_back(const Person &person) {
+void Container::push_back(Person *person) {
     people.push_back(person);
 }
 
-void Container::remove(const Person &person) {
+void Container::remove(Person *person) {
     people.remove(person);
 }
 
@@ -44,8 +57,8 @@ bool Container::operator==(const Container& o) {
     return this == &o;
 };
 
-std::ostream& operator << (std::ostream& os, const std::list<Person> &people) {
-    for (const Person &p: people) {
+std::ostream& operator << (std::ostream& os, const std::list<Person*> &people) {
+    for (const Person *p: people) {
         os << " " << p;
     }
 

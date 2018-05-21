@@ -28,8 +28,8 @@ public:
 
     void setCurrentBank(Bank* bank);
     Bank* getCurrentBank();
-    void embark(const Person& person);
-    void debark(const Person& person);
+    void embark(Person* person);
+    void debark(Person* person);
 
     friend std::ostream& operator << (std::ostream& os, const Boat* boat);
 };

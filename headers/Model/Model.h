@@ -21,12 +21,11 @@ class Model{
 public:
 
     Model() : left(new Bank("Left")), right(new Bank("right")), boat(new Boat("Boat", left)) {
-        Parent pere("pere", M), mere("mere", F);
-        Child paul("paul", M), pierre("pierre", M), julie("julie", F), jeanne("jeanne", F);
-        Cop policier("policier");
-        Thief voleur("voleur");
-        left->push_back({pere, mere, paul, pierre, julie, jeanne, policier, voleur});
-    }
+        left->push_back({new Parent("pere", M), new Parent("mere", F),
+                         new Child("paul", M), new Child("pierre", M),
+                         new Child("julie", F), new Child("jeanne", F),
+                         new Cop("policier"), new Thief("voleur")});
+    };
 
     ~Model() {
         delete left;

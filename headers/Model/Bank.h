@@ -21,7 +21,7 @@ Remark(s)   : -
 class Bank : public Container {
 public:
     explicit Bank(std::string name) : Container(std::move(name)) {};
-    Bank(std::string name, std::initializer_list<Person> args) : Container(name, args) {};
+    Bank(std::string name, std::initializer_list<Person*> args) : Container(name, args) {};
     //bool operator==(const Bank& o);
     //bool operator==(const Bank& o);
 };

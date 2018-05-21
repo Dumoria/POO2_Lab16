@@ -24,19 +24,22 @@ class Container {
     friend class Person;
 protected:
     const std::string name;
-    std::list<Person> people;
+    std::list<Person*> people;
     unsigned short max = 0;
 
 public:
     Container() {};
     explicit Container(std::string name) : name(std::move(name)) {};
-    Container(std::string& name, std::initializer_list<Person> args);
-    virtual ~Container() {};
+    Container(std::string& name, std::initializer_list<Person*> args);
+    virtual ~Container();
+    static bool deleteAll(Person* p);
 
-    const std::list<Person> getPeople() const;
-    void push_back(std::initializer_list<Person> args);
-    void push_back(const Person &person);
-    void remove(const Person &person);
+    std::list<Person*> getPeople();
+    const unsigned short getMax() const;
+    void push_back(std::initializer_list<Person*> args);
+    void push_back(Person *person);
+    void remove(Person *person);
+
     bool operator==(const Container& o);
     friend std::ostream& operator << (std::ostream& os, const std::list<Person> &people);
     friend std::ostream& operator << (std::ostream& os, const Container& container);

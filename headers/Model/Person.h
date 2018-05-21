@@ -38,6 +38,9 @@ public:
     bool operator==(const std::string &s) const;
     bool operator!=(const std::string &s) const;
 
+    friend bool operator==(Person *p, const std::string &s);
+    friend bool operator!=(Person *p, const std::string &s);
+
     friend std::ostream& operator << (std::ostream& os, const Person& person);
     friend std::ostream& operator << (std::ostream& os, const Person* person);
 
@@ -49,7 +52,7 @@ public:
         return gender;
     }
 
-    bool canDrive() {
+    bool canDrive()const {
         return _canDrive;
     }
 };

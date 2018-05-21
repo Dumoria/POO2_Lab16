@@ -18,15 +18,23 @@ bool Person::operator==(const Person& o) const {
     return this == &o;
 }
 
-bool Person::operator==(const std::string &s) const {
+bool Person::operator==(const std::string& s) const {
     return name == s;
 }
+
 bool Person::operator!=(const Person& o) const {
     return !operator==(o);
 }
 
-bool Person::operator!=(const std::string &s) const {
+bool Person::operator!=(const std::string& s) const {
     return !operator==(s);
+}
+
+bool operator==(Person *p, const std::string &s) {
+    return p->getName() == s;
+}
+bool operator!=(Person *p, const std::string &s) {
+    return !operator==(p, s);
 }
 
 std::ostream& operator << (std::ostream& os, const Person& person) {
