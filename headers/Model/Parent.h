@@ -1,28 +1,29 @@
 /*
 -----------------------------------------------------------------------------------------
 Laboratory  : POO2 - Laboratoire 16
-File        : Thief.h
+File        : Cop.h
 Author      : Thomas Benjamin, Gobet Alain
 Date        : 10.05.2018
 Class       : POO - A
 
-Goal        : Declaration of a thief
+Goal        : Declaration of a parent
 
 Remark(s)   : -
 ----------------------------------------------------------------------------------------
 */
 
-#ifndef POO2_LABO4_GOBET_THOMAS_THIEF_H
-#define POO2_LABO4_GOBET_THOMAS_THIEF_H
+#ifndef POO2_LABO4_GOBET_THOMAS_PARENT_H
+#define POO2_LABO4_GOBET_THOMAS_PARENT_H
 
-#include "Person.h"
 
-class Thief : public Person{
+#include "FamilyMember.h"
+
+
+class Parent : public FamilyMember{
 
 public:
-    Thief(const std::string name) : Person(name), _canDrive(false) {};
+    Parent(const std::string &name, bool gender) : FamilyMember(name, gender), _canDrive(true) {};
 
 };
 
-
-#endif //POO2_LABO4_GOBET_THOMAS_THIEF_H
+#endif //POO2_LABO4_GOBET_THOMAS_COP_H

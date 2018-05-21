@@ -5,6 +5,7 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_BOAT_H
 #define POO2_LABO4_GOBET_THOMAS_BOAT_H
 
+
 #include "Container.h"
 #include "Bank.h"
 
@@ -17,5 +18,6 @@ public:
     virtual void embark(const Person& person);
     virtual void debark(const Person& person);
 };
+
 
 #endif //POO2_LABO4_GOBET_THOMAS_BOAT_H

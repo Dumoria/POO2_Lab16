@@ -5,6 +5,7 @@
 #ifndef POO2_LABO4_GOBET_THOMAS_CONTAINER_H
 #define POO2_LABO4_GOBET_THOMAS_CONTAINER_H
 
+
 #include <list>;
 #include <string>;
 #include "Person.h"
@@ -24,5 +25,6 @@ public:
     };
     virtual ~Container();
 };
+
 
 #endif //POO2_LABO4_GOBET_THOMAS_CONTAINER_H
