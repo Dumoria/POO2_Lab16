@@ -15,6 +15,7 @@ Remark(s)   : -
 #include <list>
 #include <utility>
 #include <algorithm>
+#include <functional>
 #include "../../headers/Controller/Controller.h"
 #include "../../headers/Model/Rule.h"
 #include "../../headers/view/View.h"
@@ -24,18 +25,30 @@ Controller::Controller(const Model &model) : model(model), view(View(model)) {
     view.turnDisplay(turn);
 
     setCommands();
+    setRules();
 };
 
 const bool Controller::command() {
-   bool canDrive;
-    std::string msg, person;
+    error = false;
     std::list<Person*> bankPeople = model.boat->getCurrentBank()->getPeople(),
             boatPeople = model.boat->getPeople();
 
-    // Parcourt la liste des commandes
+    // parcourt la liste des commandes
     for (auto command : commands) {
         if (cmd.at(0) == command.cmd) {
-           (this->*command.commandFunction)();
+            checkRules(cmd, true);
+            if (!error) {
+                (this->*command.commandFunction)();
+
+                checkRules(cmd, false);
+
+                if (error) {
+                    (this->*command.commandReverseFunction)();
+                }
+
+                if (command.increaseTurn)
+                    nextTurn();
+            }
             break;
         }
     }
@@ -68,10 +81,9 @@ const bool Controller::command() {
             break;
     }*/
 
+    //std::cout << "msg : " << msg;
     if (!exit) {
-        if (!error) {
-            view.display();
-        } else {
+        if (error) {
             view.messageDisplay(msg);
         }
     } else {
@@ -83,32 +95,119 @@ const bool Controller::command() {
     return exit;
 }
 
+void Controller::checkRules(std::string cmd, bool before) {
+    for (auto rule : rules) {
+        if (cmd.at(0) == rule.getCommand() && (rule.getBefore() == before)) {
+
+            error = rule.checkRule(cmd);
+            if (error) {
+                msg = rule.returnMessage();
+                break;
+            }
+        }
+    }
+}
+
 void Controller::setCmd(const std::string& cmd) {
     this->cmd = cmd;
 };
 
+
+void Controller::embarks(const std::string &person) {
+    std::list<Person*> bankPeople = model.boat->getCurrentBank()->getPeople();
+    auto it = find(bankPeople.begin(), bankPeople.end(), cmd.substr(2));
+    model.boat->embark(*it);
+}
+
+void Controller::debarks(const std::string &person) {
+    std::list<Person*> boatPeople = model.boat->getPeople();
+    auto it = find(boatPeople.begin(), boatPeople.end(), cmd.substr(2));
+    model.boat->debark(*it);
+}
+
+void Controller::moves(Boat *boat, Bank *left, Bank *right) {
+    boat->setCurrentBank(boat->getCurrentBank() == left ? right : left);
+}
+
+void Controller::commandP() {
+    view.display();
+}
+void Controller::commandE() {
+    embarks(cmd.substr(2));
+    if (!error)
+        view.display();
+}
+void Controller::commandEReverse() {
+    debarks(cmd.substr(2));
+    view.display();
+}
+void Controller::commandD() {
+    debarks(cmd.substr(2));
+    if (!error)
+        view.display();
+}
+void Controller::commandDReverse() {
+    embarks(cmd.substr(2));
+}
+void Controller::commandM() {
+    moves(model.boat, model.left, model.right);
+    if (!error)
+        view.display();
+}
+void Controller::commandMReverse() {
+    moves(model.boat, model.left, model.right);
+}
+void Controller::commandH() {
+    view.menuDisplay();
+}
+void Controller::commandQ() {
+    msg = "Au revoir !";
+    view.messageDisplay(msg);
+    exit = true;
+}
 // Set command list
 void Controller::setCommands() {
-    commands.push_back(Command('p', &Controller::display));
-    commands.push_back(Command('e', &Controller::embark));
-    commands.push_back(Command('d', &Controller::debark));
-    commands.push_back(Command('m', &Controller::move));
-    commands.push_back(Command('h', &Controller::showMenu));
-    commands.push_back(Command('q', &Controller::quit));
+    /*commandFunctionDef commandP = reinterpret_cast<commandFunctionDef>([&](){});
+    commandFunctionDef commandE = [&](){embarks(model.boat->getCurrentBank(), model.boat, cmd.substr(2));};
+    commandFunctionDef commandEReverse = [&](){debarks(model.boat->getCurrentBank(), model.boat, cmd.substr(2));};
+    commandFunctionDef commandD = [&](){debarks(model.boat->getCurrentBank(), model.boat, cmd.substr(2));};
+    commandFunctionDef commandDReverse = [&](){embarks(model.boat->getCurrentBank(), model.boat, cmd.substr(2));};
+    commandFunctionDef commandM = [&](){moves(model.boat, model.left, model.right);};
+    commandFunctionDef commandMReverse = [&](){moves(model.boat, model.left, model.right);};
+    commandFunctionDef commandH = [&](){view.menuDisplay();};
+    commandFunctionDef commandQ = [&](){
+        msg = "Au revoir !";
+        view.messageDisplay(msg);
+        exit = true;
+    };*/
 
+    commands.emplace_back(Command('p', &Controller::commandP, false));
+    commands.emplace_back(Command('e', &Controller::commandE, &Controller::commandEReverse, true));
+    commands.emplace_back(Command('d', &Controller::commandD, &Controller::commandDReverse, true));
+    commands.emplace_back(Command('m', &Controller::commandM, &Controller::commandMReverse, true));
+    commands.emplace_back(Command('h', &Controller::commandH, false));
+    commands.emplace_back(Command('q', &Controller::commandQ, false));
+}
+
+bool checkName(Container *container, const std::string &cmd) {
+    return (cmd.length() <= 2);
+}
+
+bool findPerson(Container *container, const std::string &cmd) {
+    return find(container->getPeople().begin(), container->getPeople().end(), cmd.substr(2)) == container->getPeople().end();
 }
 
 void Controller::setRules() {
+    const std::string ERROR_NONAME = "nom de la personne non precisee",
+            ERROR_MAX_PEOPLE = "maximum 2 personnes sur le bateau",
+            ERROR_NOBODY = "personne de ce nom n'est present",
+            ERROR_CANT_DRIVE = "personne ne peut conduire le bateau";
 
-    const std::string ERROR_NOBODY = "Personne de ce nom n'est présent",
-            ERROR_MAX_PEOPLE = "Maximum 2 personnes sur le bateau",
-            ERROR_CANT_DRIVE = "Personne ne peut conduire le bateau";
+    rules.emplace_back('e', true, model.boat, checkName, ERROR_NONAME);
+    rules.emplace_back('e', true, model.boat, [](Container *container, const std::string &cmd) {return (container->getPeople().size() >= container->getMax());}, ERROR_MAX_PEOPLE);
+    rules.emplace_back('e', true, model.boat->getCurrentBank(), findPerson, ERROR_NOBODY);
+    rules.emplace_back('d', true, model.boat, findPerson, ERROR_NOBODY);
 
-    //bool findPerson(Container c, std::string &person) {
-        //return std::find_(c.getPeople().begin(), c.getPeople().end(), person) == l.end();
-    //}
-
-    //rules.push_back(Rule('e', model.boat->getCurrentBank(), &findPerson, ERROR_NOBODY));
 }
 
 void Controller::showMenu(){
@@ -131,7 +230,7 @@ void Controller::embark() {
 
     if (cmd.length() > 2) {
         person = cmd.substr(2);
-        auto it = find(bankPeople.begin(), bankPeople.end(), person);
+        auto it = find(bankPeople.begin(), bankPeople.end(), cmd.substr(2));
 
         if (boatPeople.size() < model.boat->getMax()) {
             if (it == bankPeople.end()) {

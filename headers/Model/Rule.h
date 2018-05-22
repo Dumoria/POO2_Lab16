@@ -19,19 +19,21 @@ Remark(s)   : -
 #include <list>
 #include "Container.h"
 
-typedef bool (*ruleFunctionDef)(Container);
+typedef bool (*ruleFunctionDef)(Container *container, const std::string &s);
 
 class Rule {
     char command;
+    bool before;
     Container *container;
     ruleFunctionDef ruleFunction;
     std::string errorMessage;
 
 public:
-    Rule(const char &command, Container *container, ruleFunctionDef ruleFunction, const std::string &errorMessage);
+    Rule(const char &command, bool before, Container *container, ruleFunctionDef ruleFunction, const std::string &errorMessage);
 
-    bool checkRule();
+    bool checkRule(const std::string &cmd);
     char getCommand();
+    bool getBefore();
     std::string returnMessage();
 };
 

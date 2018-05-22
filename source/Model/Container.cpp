@@ -19,7 +19,7 @@ Remark(s)   : -
 #include "../../headers/Model/Container.h"
 
 Container::Container(std::string& name, std::initializer_list<Person*> args) : Container(name) {
-        push_back(args);
+    push_back(args);
 };
 
 Container::~Container() {
@@ -32,6 +32,10 @@ bool Container::deleteAll(Person* p) {
 }
 
 std::list<Person*> Container::getPeople() {
+    return people;
+}
+
+const std::list<Person*> Container::getPeople() const {
     return people;
 }
 

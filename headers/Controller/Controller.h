@@ -29,8 +29,12 @@ struct Command {
 public:
     char cmd;
     commandFunctionDef commandFunction;
+    commandFunctionDef commandReverseFunction;
+    bool increaseTurn;
 
-    Command(char cmd, commandFunctionDef commandFunction) : cmd(cmd), commandFunction(commandFunction) {};
+    Command(char cmd, commandFunctionDef commandFunction, bool increaseTurn) : cmd(cmd), commandFunction(commandFunction), increaseTurn(increaseTurn) {};
+    Command(char cmd, commandFunctionDef commandFunction, commandFunctionDef commandReverseFunction, bool increaseTurn) :
+            cmd(cmd), commandFunction(commandFunction), commandReverseFunction(commandReverseFunction), increaseTurn(increaseTurn) {};
 };
 
 class Controller {
@@ -94,10 +98,23 @@ public:
     }
 
     void setCmd(const std::string& cmd);
-
     void setRules();
 
+    void embarks(const std::string &person);
+    void debarks(const std::string &person);
+    void moves(Boat *boat, Bank *left, Bank *right);
+    void commandP();
+    void commandE();
+    void commandEReverse();
+    void commandD();
+    void commandDReverse();
+    void commandM();
+    void commandMReverse();
+    void commandH();
+    void commandQ();
     void setCommands();
+
+    void checkRules(std::string cmd, bool before);
 
     void showMenu();
 

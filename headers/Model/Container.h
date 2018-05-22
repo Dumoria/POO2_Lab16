@@ -35,6 +35,7 @@ public:
     static bool deleteAll(Person* p);
 
     std::list<Person*> getPeople();
+    const std::list<Person*> getPeople() const;
     const unsigned short getMax() const;
     void push_back(std::initializer_list<Person*> args);
     void push_back(Person *person);
