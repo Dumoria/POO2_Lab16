@@ -29,7 +29,8 @@ int main() {
 
     while (!exit) {
         std::getline(std::cin, cmd);
-        exit = controller.command(cmd);
+        controller.setCmd(cmd);
+        exit = controller.command();
     }
 
     return EXIT_SUCCESS;

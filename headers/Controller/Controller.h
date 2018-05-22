@@ -21,8 +21,16 @@ Remark(s)   : -
 #include "../Model/Model.h"
 #include "../Model/Rule.h"
 
-struct Commande {
+class Controller;
+typedef void (Controller::*commandFunctionDef)();
 
+struct Command {
+    friend class Controller;
+public:
+    char cmd;
+    commandFunctionDef commandFunction;
+
+    Command(char cmd, commandFunctionDef commandFunction) : cmd(cmd), commandFunction(commandFunction) {};
 };
 
 class Controller {
@@ -37,15 +45,20 @@ private:
     const View view;
 
     // command list
-    std::list<Commande> commands;
+    std::list<Command> commands;
 
     // rule list
     std::list<Rule> rules;
 
+    // cmd
+    std::string cmd;
+    bool exit = false, error = false;
+    std::string msg;
+
 public:
     explicit Controller(const Model &model);
 
-    const bool command(const std::string &cmd);
+    const bool command();
 
     Controller controller() {
 
@@ -80,13 +93,21 @@ public:
         }
     }
 
+    void setCmd(const std::string& cmd);
+
     void setRules();
 
-    void showMenu() const;
+    void setCommands();
 
-    void display() const;
+    void showMenu();
+
+    void display();
 
     void nextTurn();
+
+    void embark();
+    void debark();
+    void move();
 
     void reinit(){
         //left.reinit();
