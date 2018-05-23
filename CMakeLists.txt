@@ -18,9 +18,9 @@ add_executable(POO2_lab16
         headers/Model/Rule.h
         headers/Model/Thief.h
         headers/View/View.h
-        source/controller/Controller.cpp
+        source/Controller/Controller.cpp
         source/Model/Boat.cpp
         source/Model/Container.cpp
         source/Model/Person.cpp
         source/Model/Rule.cpp
-        source/view/View.cpp)
+        source/View/View.cpp)

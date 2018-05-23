@@ -14,7 +14,7 @@ Remark(s)   : -
 
 #include "../../headers/Model/Person.h"
 
-explicit Person::Person(std::string name) : name(std::move(name)) {};
+Person::Person(std::string name) : name(std::move(name)) {};
 
 Person::Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
 
@@ -23,15 +23,13 @@ Person::Person(Person &p) : name(p.name), gender(p.gender), _canDrive(p._canDriv
 bool Person::operator==(const Person& o) const {
     return this == &o;
 }
-
-bool Person::operator==(const std::string& s) const {
-    return name == s;
-}
-
 bool Person::operator!=(const Person& o) const {
     return !operator==(o);
 }
 
+bool Person::operator==(const std::string& s) const {
+    return name == s;
+}
 bool Person::operator!=(const std::string& s) const {
     return !operator==(s);
 }
@@ -54,7 +52,7 @@ std::ostream& operator << (std::ostream& os, const Person* person) {
     return os;
 };
 
-std::string Person::getName(){
+std::string Person::getName() {
     return name;
 }
 
@@ -62,6 +60,6 @@ Gender Person::getGender() {
     return gender;
 }
 
-bool Person::canDrive()const {
+bool Person::canDrive() const {
     return _canDrive;
 }

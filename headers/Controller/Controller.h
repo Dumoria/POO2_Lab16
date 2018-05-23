@@ -6,7 +6,7 @@ Author      : Thomas Benjamin, Gobet Alain
 Date        : 10.05.2018
 Class       : POO - A
 
-Goal        : Declaration of the controller
+Goal        : Declaration of the Controller
 
 Remark(s)   : -
 ----------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ friend class View;
     /**
      * View used by the controller.
      */
-    const View view;
+    View view;
 
     /**
      * Command list.

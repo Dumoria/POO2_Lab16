@@ -6,7 +6,7 @@ Author      : Thomas Benjamin, Gobet Alain
 Date        : 10.05.2018
 Class       : POO - A
 
-Goal        : Implementation of the controller
+Goal        : Implementation of the Controller
 
 Remark(s)   : -
 ----------------------------------------------------------------------------------------

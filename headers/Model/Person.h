@@ -46,17 +46,11 @@ public:
     friend std::ostream& operator << (std::ostream& os, const Person& person);
     friend std::ostream& operator << (std::ostream& os, const Person* person);
 
-    std::string getName(){
-        return name;
-    }
+    std::string getName();
 
-    Gender getGender() {
-        return gender;
-    }
+    Gender getGender();
 
-    bool canDrive()const {
-        return _canDrive;
-    }
+    bool canDrive() const;
 };
 
 

@@ -1,6 +1,16 @@
-//
-// Created by benja on 17.05.2018.
-//
+/*
+-----------------------------------------------------------------------------------------
+Laboratory  : POO2 - Laboratoire 16
+File        : Personn.h
+Author      : Thomas Benjamin, Gobet Alain
+Date        : 23.05.2018
+Class       : POO - A
+
+Goal        : Declaration of a personn
+
+Remark(s)   : -
+----------------------------------------------------------------------------------------
+*/
 
 #ifndef POO2_LAB16_MODEL_H
 #define POO2_LAB16_MODEL_H

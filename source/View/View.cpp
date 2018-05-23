@@ -6,15 +6,15 @@ Author      : Thomas Benjamin, Gobet Alain
 Date        : 23.05.2018
 Class       : POO - A
 
-Goal        : Implementation of the view
+Goal        : Implementation of the View
 
 Remark(s)   : -
 ----------------------------------------------------------------------------------------
 */
 
-#include "../../headers/view/View.h"
+#include "../../headers/View/View.h"
 
-explicit View::View(const Model &model) : model(model) {};
+View::View(const Model &model) : model(model) {};
 
 void View::initialDisplay() const {
     menuDisplay();
