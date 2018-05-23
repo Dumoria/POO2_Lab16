@@ -15,8 +15,8 @@ Remark(s)   : -
 #define POO2_LABO4_GOBET_THOMAS_CONTROLLER_H
 
 #include <list>
-#include "../Model/Boat.h"
 #include "../Model/Bank.h"
+#include "../Model/Boat.h"
 #include "../Model/Model.h"
 #include "../Model/Rule.h"
 #include "../View/View.h"
@@ -119,7 +119,7 @@ friend class View;
      */
     bool exit = false, error = false;
 
-    /*
+    /**
      * The message to display.
      */
     std::string msg;
