@@ -44,6 +44,7 @@ public:
     friend bool operator!=(Person *p, const std::string &s);
 
     friend std::ostream& operator << (std::ostream& os, const Person& person);
+    friend std::ostream& operator << (std::ostream& os, const Person* person);
 
     std::string getName(){
         return name;

@@ -45,6 +45,5 @@ std::ostream& operator << (std::ostream& os, const Person& person) {
 
 std::ostream& operator << (std::ostream& os, const Person* person) {
     os << person->name;
-
     return os;
 };
