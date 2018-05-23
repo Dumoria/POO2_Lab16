@@ -22,6 +22,7 @@ class Thief : public Person{
 
 public:
     explicit Thief(std::string name) : Person(std::move(name)) {_canDrive = false;};
+    Thief(std::string name, Gender gender) : Person(std::move(name), gender) {_canDrive = false;};
 
 };
 

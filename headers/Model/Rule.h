@@ -24,16 +24,17 @@ typedef bool (*ruleFunctionDef)(Container *container, const std::string &s);
 class Rule {
     char command;
     bool before;
-    Container *container;
+    bool container;
     ruleFunctionDef ruleFunction;
     std::string errorMessage;
 
 public:
-    Rule(const char &command, bool before, Container *container, ruleFunctionDef ruleFunction, const std::string &errorMessage);
+    Rule(const char &command, bool before, bool container, ruleFunctionDef ruleFunction, const std::string &errorMessage);
 
-    bool checkRule(const std::string &cmd);
+    bool checkRule(Container *container, const std::string &cmd);
     char getCommand();
     bool getBefore();
+    bool getContainer();
     std::string returnMessage();
 };
 

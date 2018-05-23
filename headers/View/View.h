@@ -51,7 +51,7 @@ public:
     }
 
     void turnDisplay(short unsigned int turn) const {
-        std::cout << turn << "> ";
+        std::cout << std::endl << turn << "> ";
     }
 
     void bankDisplay(Bank *bank) const {

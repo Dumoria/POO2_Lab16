@@ -22,7 +22,7 @@ Bank* Boat::getCurrentBank() {
     return currentBank;
 }
 
-void Boat::embark(Person* person) {
+void Boat::embark(Person *person) {
     push_back(person);
     currentBank->remove(person);
 }

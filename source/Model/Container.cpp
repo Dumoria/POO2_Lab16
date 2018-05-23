@@ -20,7 +20,7 @@ Remark(s)   : -
 
 Container::Container(std::string& name, std::initializer_list<Person*> args) : Container(name) {
     push_back(args);
-};
+}
 
 Container::~Container() {
     people.remove_if(deleteAll);
@@ -41,6 +41,16 @@ const std::list<Person*> Container::getPeople() const {
 
 const unsigned short Container::getMax() const {
     return max;
+}
+
+Container& Container::operator=(const Container& o) {
+    if(this != &o) {
+        people.remove_if(deleteAll);
+        people = o.people;
+        name = o.name;
+        max = o.max;
+    }
+    return *this;
 }
 
 void Container::push_back(std::initializer_list<Person*> args) {

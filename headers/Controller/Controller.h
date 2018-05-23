@@ -43,7 +43,7 @@ private:
     unsigned short int turn = 0;
 
     //Model, check si meilleur temps utiliser model ou directe class du mod ici
-    const Model model;
+    Model model;
 
     //View
     const View view;
@@ -110,6 +110,7 @@ public:
     void commandDReverse();
     void commandM();
     void commandMReverse();
+    void commandR();
     void commandH();
     void commandQ();
     void setCommands();

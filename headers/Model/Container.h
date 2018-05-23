@@ -23,7 +23,7 @@ Remark(s)   : -
 class Container {
     friend class Person;
 protected:
-    const std::string name;
+    std::string name;
     std::list<Person*> people;
     unsigned short max = 0;
 
@@ -41,6 +41,7 @@ public:
     void push_back(Person *person);
     void remove(Person *person);
 
+    Container& operator=(const Container& o);
     bool operator==(const Container& o);
     friend std::ostream& operator << (std::ostream& os, const std::list<Person> &people);
     friend std::ostream& operator << (std::ostream& os, const Container& container);

@@ -14,10 +14,10 @@ Remark(s)   : -
 
 #include "../../headers/Model/Rule.h"
 
-Rule::Rule(const char &command, bool before, Container *container, ruleFunctionDef ruleFunction, const std::string &errorMessage) :
+Rule::Rule(const char &command, bool before, bool container, ruleFunctionDef ruleFunction, const std::string &errorMessage) :
         command(command), before(before), container(container), ruleFunction(ruleFunction), errorMessage(errorMessage) {}
 
-bool Rule::checkRule(const std::string &cmd) {
+bool Rule::checkRule(Container *container, const std::string &cmd) {
     return ruleFunction(container, cmd);
 }
 
@@ -27,6 +27,10 @@ char Rule::getCommand() {
 
 bool Rule::getBefore() {
     return before;
+}
+
+bool Rule::getContainer() {
+    return container;
 }
 
 std::string Rule::returnMessage() {

@@ -5,6 +5,7 @@
 #ifndef POO2_LAB16_MODEL_H
 #define POO2_LAB16_MODEL_H
 
+#include <memory>
 #include "Parent.h"
 #include "Child.h"
 #include "Cop.h"
@@ -14,20 +15,38 @@ class Model{
     friend class View;
     friend class Controller;
 
-    Bank* left{};
-    Bank* right{};
-    Boat* boat{};
+    Bank* left;
+    Bank* right;
+    Boat* boat;
+
+    Parent *pere = new Parent("pere", M), *mere = new Parent("mere", F);
+    Child *paul = new Child("paul", M), *pierre = new Child("pierre", M),
+            *julie = new Child("julie", F), *jeanne = new Child("jeanne", F);
+    Cop *policier = new Cop("policier", M);
+    Thief *voleur = new Thief("voleur", M);
+
+    std::initializer_list<Person*> initList;
 
 public:
 
     Model() : left(new Bank("Left")), right(new Bank("right")), boat(new Boat("Boat", left)) {
-        left->push_back({new Parent("pere", M), new Parent("mere", F),
-                         new Child("paul", M), new Child("pierre", M),
-                         new Child("julie", F), new Child("jeanne", F),
-                         new Cop("policier"), new Thief("voleur")});
+        initList = {pere, mere, paul, pierre, julie, jeanne, policier, voleur};
+        left->push_back(initList);
     };
 
     ~Model() {
+        destruct();
+    }
+
+    void destruct() {
+        delete pere;
+        delete mere;
+        delete paul;
+        delete pierre;
+        delete julie;
+        delete jeanne;
+        delete policier;
+        delete voleur;
         delete left;
         delete right;
         delete boat;
@@ -43,6 +62,14 @@ public:
 
     Boat* getBoat(){
         return boat;
+    }
+
+    void reinit() {
+        left->getPeople().clear();
+        right->getPeople().clear();
+        boat->getPeople().clear();
+        boat->setCurrentBank(left);
+        //left->push_back(initList);
     }
 
     //void setRightBank(Bank bank){
