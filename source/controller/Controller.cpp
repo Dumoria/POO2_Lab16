@@ -60,7 +60,7 @@ const bool Controller::command() {
 
     if (!foundCmd) {
         error = true;
-        msg = "Command non valide";
+        msg = "Commande non valide";
     }
 
     /*

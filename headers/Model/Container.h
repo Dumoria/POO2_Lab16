@@ -40,6 +40,7 @@ public:
     void push_back(std::initializer_list<Person*> args);
     void push_back(Person *person);
     void remove(Person *person);
+    void clear();
 
     Container& operator=(const Container& o);
     bool operator==(const Container& o);
