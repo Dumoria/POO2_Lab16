@@ -26,7 +26,6 @@ Container::~Container() {
     clear();
 }
 
-
 std::list<Person*> Container::getPeople() {
     return people;
 }
