@@ -5,56 +5,94 @@
 #ifndef POO2_LAB16_MODEL_H
 #define POO2_LAB16_MODEL_H
 
-class Model{
+#include <memory>
+#include "Bank.h"
+#include "Boat.h"
+#include "Parent.h"
+#include "Child.h"
+#include "Cop.h"
+#include "Thief.h"
 
-private:
-    Bank right;
-    Bank left;
-    Boat boat;
+class Model{
+    friend class View;
+    friend class Controller;
+
+    Bank* left;
+    Bank* right;
+    Boat* boat;
+
+    Parent *pere, *mere;
+    Child *paul, *pierre, *julie, *jeanne;
+    Cop *policier;
+    Thief *voleur;
 
 public:
+    Model() : left(new Bank("Left")), right(new Bank("right")), boat(new Boat("Boat", left)) {
+        populate();
+        left->push_back({pere, mere, paul, pierre, julie, jeanne, policier, voleur});
+    };
 
-    Model model(){
-        Parent pere("Père", 0);
-        Parent mere("Mère", 1);
-
-        Child paul("Paul", 0);
-        Child pierre("Pierre", 0);
-
-        Child julie("Julie", 1);
-        Child jeanne("Jeanne", 1);
-
-        Thief thief("Voleur");
-        Cop cop("Policier");
-
-        right = new Bank(); //fill with personns, check for insertion in bank
-        left = new Bank();
-        Boat = new Boat();
+    ~Model() {
+        destruct();
     }
 
-    Bank getRightBank(){
+    void destruct() {
+        delete pere;
+        delete mere;
+        delete paul;
+        delete pierre;
+        delete julie;
+        delete jeanne;
+        delete policier;
+        delete voleur;
+        delete left;
+        delete right;
+        delete boat;
+    }
+
+    void populate() {
+        pere = new Parent("pere", M);
+        mere = new Parent("mere", F);
+        paul = new Child("paul", M);
+        pierre = new Child("pierre", M);
+        julie = new Child("julie", F);
+        jeanne = new Child("jeanne", F);
+        policier = new Cop("policier", M);
+        voleur = new Thief("voleur", M);
+    };
+
+    Bank* getRightBank(){
         return right;
     }
 
-    Bank getLeftBank(){
+    Bank* getLeftBank(){
         return left;
     }
 
-    Boat getBoat(){
+    Boat* getBoat(){
         return boat;
     }
 
-    void setRightBank(Bank bank){
-        right = bank;
+    void reinit() {
+        left->clear();
+        right->clear();
+        boat->clear();
+        boat->setCurrentBank(left);
+        populate();
+        left->push_back({pere, mere, paul, pierre, julie, jeanne, policier, voleur});
     }
 
-    void setLeftBank(Bank bank){
-        left = bank;
-    }
-
-    void setBoat(Boat boat){
-        this->boat = boat;
-    }
+    //void setRightBank(Bank bank){
+    //    right = bank;
+    //}
+//
+    //void setLeftBank(Bank bank){
+    //    left = bank;
+    //}
+//
+    //void setBoat(Boat boat){
+    //    this->boat = boat;
+    //}
 
 };
 

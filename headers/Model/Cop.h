@@ -16,18 +16,15 @@ Remark(s)   : -
 #define POO2_LABO4_GOBET_THOMAS_COP_H
 
 
+#include <utility>
 #include "Person.h"
 
 
 class Cop : public Person{
 
 public:
-
-    explicit Cop(std::string name): Person(name){
-
-    }
-
-
+    explicit Cop(std::string name): Person(std::move(name)) {_canDrive = true;};
+    Cop(std::string name, Gender gender): Person(std::move(name), gender) {_canDrive = true;};
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_COP_H

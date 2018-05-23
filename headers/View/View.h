@@ -17,41 +17,65 @@ Remark(s)   : -
 
 #include <string>
 #include <iostream>
+#include <utility>
+#include "../Controller/Controller.h"
 #include "../Model/Bank.h"
 #include "../Model/Boat.h"
+#include "../Model/Model.h"
 
 const std::string DELIM_LINE = "-----------------------------------------------------------";
 const std::string DELIM_LINE_THICK = "===========================================================";
-const std::string MENU = "p\t: afficher\ne <nom>\t: embarquer <nom>\nd <nom>\t: debarquer <nom>\n"
-"m\t: deplacer bateau\nr\t: reinitialiser\nq\t: quitter\nh\t: menu\n";
+const std::string MENU = "p\t\t: afficher\ne <nom>\t: embarquer <nom>\nd <nom>\t: debarquer <nom>\n"
+"m\t\t: deplacer bateau\nr\t\t: reinitialiser\nq\t\t: quitter\nh\t\t: menu\n";
 
 class View{
-
-private:
+    friend class Model;
+    Model model;
 
 public:
+    explicit View(const Model &model) : model(model) {};
 
-    View view();
-
-    void initialDisplay(){
+    void initialDisplay() const {
         menuDisplay();
-        std::cout << DELIM_LINE << std:: endl;
-
+        display();
     }
 
-    void menuDisplay(){
+    void menuDisplay() const {
         std::cout << MENU << std::endl;
     }
 
-    void bankDisplay(Bank bank){
-        /*Pour chaque personne de la bank
-         *  p.getName();
-         *
-         */
+    void display() const {
+        bankDisplay(model.left);
+        riverDisplay();
+        bankDisplay(model.right);
     }
 
-    void boatDisplay(Boat boat){
+    void turnDisplay(short unsigned int turn) const {
+        std::cout << std::endl << turn << "> ";
+    }
 
+    void bankDisplay(Bank *bank) const {
+        std::cout << DELIM_LINE << std::endl;
+        std::cout << bank << std::endl;
+        std::cout << DELIM_LINE << std::endl;
+    }
+
+    void riverDisplay() const {
+        boatDisplay(model.left);
+        std::cout << DELIM_LINE_THICK << std::endl;
+        boatDisplay(model.right);
+    }
+
+    void boatDisplay(Bank *bank) const {
+        if (model.boat->getCurrentBank() == bank) {
+            std::cout << model.boat << std::endl;
+        } else {
+            std::cout << std::endl;
+        }
+    }
+
+    void messageDisplay(std::string &msg) const {
+        std::cout << "### " << msg << std::endl;
     }
 
 };

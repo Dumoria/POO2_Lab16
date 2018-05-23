@@ -16,25 +16,46 @@ Remark(s)   : -
 #define POO2_LABO4_GOBET_THOMAS_PERSON_H
 
 
+#include <iostream>
 #include <string>
+#include <utility>
+
+enum Gender {F, M};
 
 class Person {
-
-private:
-
-    std::string name;
-
+    friend class Container;
 protected:
-    explicit Person(std::string name){
-        this->name = name;
-    }
+    std::string name;
+    Gender gender = M;
+    bool _canDrive = true;
 
 public:
+    explicit Person(std::string name) : name(std::move(name)) {};
+    Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
+    Person(Person &p) : name(p.name), gender(p.gender), _canDrive(p._canDrive) {};
+    virtual ~Person() {};
+
+    bool operator==(const Person &o) const;
+    bool operator!=(const Person &o) const;
+    bool operator==(const std::string &s) const;
+    bool operator!=(const std::string &s) const;
+
+    friend bool operator==(Person *p, const std::string &s);
+    friend bool operator!=(Person *p, const std::string &s);
+
+    friend std::ostream& operator << (std::ostream& os, const Person& person);
 
     std::string getName(){
         return name;
     }
 
+    Gender getGender() {
+        return gender;
+    }
+
+    bool canDrive()const {
+        return _canDrive;
+    }
 };
 
 
