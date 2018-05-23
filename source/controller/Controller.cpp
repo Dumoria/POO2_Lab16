@@ -24,7 +24,7 @@ Remark(s)   : -
  */
 Controller::Controller(const Model &model, const View &view) : model(model), view(view) {
     view.initialDisplay();
-    turnDisplay(turn);
+    turnDisplay();
 
     setCommands();
     setRules();
@@ -58,6 +58,9 @@ void Controller::setCmd(const std::string& cmd) {
 
 /** --------------------------- methods used in setCommands -------------------------- **/
 
+/**
+ * All methods linked to set up commands.
+ */
 void Controller::commandP() {
     display();
 }
@@ -74,15 +77,15 @@ void Controller::commandDReverse() {
     embark(cmd.substr(2));
 }
 void Controller::commandM() {
-    move(model.boat, model.left, model.right);
+    move();
 }
 void Controller::commandMReverse() {
-    move(model.boat, model.left, model.right);
+    move();
 }
 void Controller::commandR() {
     reinit();
     msg = "Reinitialisation";
-    messageDisplay(msg);
+    messageDisplay();
     display();
 }
 void Controller::commandH() {
@@ -117,7 +120,6 @@ bool findPerson(Container *container, const std::string &cmd) {
         if (person == cmd.substr(2))
             return false;
     }
-
     return true;
 }
 
@@ -159,7 +161,6 @@ bool thiefMemberNoCop(Container *container, const std::string &cmd) {
         if ((dynamic_cast<Cop*>(p)) != nullptr)
             cop = true;
     }
-
     return (thief && member && !cop);
 }
 
@@ -185,7 +186,6 @@ bool sonMotherNoFather(Container *container, const std::string &cmd) {
         if ((dynamic_cast<Parent*>(p)) != nullptr && p->getGender() == M)
             father = true;
     }
-
     return (son && mother && !father);
 }
 
@@ -211,7 +211,6 @@ bool daughterFatherNoMother(Container *container, const std::string &cmd) {
         if ((dynamic_cast<Parent*>(p)) != nullptr && p->getGender() == F)
             mother = true;
     }
-
     return (daughter && father && !mother);
 }
 
@@ -219,10 +218,16 @@ bool daughterFatherNoMother(Container *container, const std::string &cmd) {
  * Sets the rule list.
  *
  * Allows to add quickly a rule to the controller.
+ * Each rule is composed of: the char corresponding to the command to check,
+ * a bool indicating it the rules is tested before (true) or after the command uses its defined method,
+ * a bool indicting which container to test (boat = true, currentBank = false),
+ * the function to test returning a bool (true = error),
+ * the message to display in case of error.
  *
  * @see     Rule
  */
 void Controller::setRules() {
+    // error messages
     const std::string ERROR_NONAME = "nom de la personne non precisee",
             ERROR_MAX_PEOPLE = "maximum 2 personnes sur le bateau",
             ERROR_NOBODY = "personne de ce nom n'est present",
@@ -233,7 +238,7 @@ void Controller::setRules() {
 
     rules.emplace_back('e', true, true, checkName, ERROR_NONAME);
     rules.emplace_back('d', true, true, checkName, ERROR_NONAME);
-    // max people in container
+    // max people in container boat
     rules.emplace_back('e', true, true, [](Container *container, const std::string &cmd) {
         return (container->getPeople().size() >= container->getMax());
     }, ERROR_MAX_PEOPLE);
@@ -299,9 +304,9 @@ const bool Controller::command() {
 
     if (!exit) {
         if (error) {
-            messageDisplay(msg);
+            messageDisplay();
         }
-        turnDisplay(turn);
+        turnDisplay();
     } else {
         model.destruct();
     }
@@ -333,49 +338,87 @@ void Controller::checkRules(bool before) {
     }
 }
 
+/**
+ * Displays the command menu.
+ */
 void Controller::showMenu(){
     view.menuDisplay();
 }
 
+/**
+ * Displays the current model state.
+ */
 void Controller::display() {
     view.display();
 }
 
-void Controller::messageDisplay(std::string msg) {
+/**
+ * Displays a message.
+ *
+ * @param   msg   the message to display
+ */
+void Controller::messageDisplay() {
     view.messageDisplay(msg);
 }
 
-void Controller::turnDisplay(unsigned short int turn) {
+/**
+ * Displays the current turn
+ *
+ * @param   cmd   the string entered as a command
+ */
+void Controller::turnDisplay() {
     view.turnDisplay(turn);
 }
 
+/**
+ * Embarks a person from the bank to the boat.
+ *
+ * @param   person   the person name to embark
+ */
 void Controller::embark(const std::string &person) {
     std::list<Person*> bankPeople = model.boat->getCurrentBank()->getPeople();
     auto it = find(bankPeople.begin(), bankPeople.end(), cmd.substr(2));
     model.boat->embark(*it);
 }
 
+/**
+ * Debarks a person from the boat to the bank.
+ *
+ * @param   person   the person name to debark
+ */
 void Controller::debark(const std::string &person) {
     std::list<Person*> boatPeople = model.boat->getPeople();
     auto it = find(boatPeople.begin(), boatPeople.end(), cmd.substr(2));
     model.boat->debark(*it);
 }
 
-void Controller::move(Boat *boat, Bank *left, Bank *right) {
-    boat->setCurrentBank(boat->getCurrentBank() == left ? right : left);
+/**
+ * Moves the boat to the other bank.
+ */
+void Controller::move() {
+    model.boat->setCurrentBank(model.boat->getCurrentBank() == model.left ? model.right : model.left);
 }
 
+/**
+ * Increases the turn number.
+ */
 void Controller::nextTurn() {
     turn++;
 }
 
+/**
+ * Reinitialize the model.
+ */
 void Controller::reinit() {
     turn = 0;
     model.reinit();
 }
 
+/**
+ * Exits the application.
+ */
 void Controller::quit() {
     msg = "Au revoir !";
-    messageDisplay(msg);
+    messageDisplay();
     exit = true;
 }

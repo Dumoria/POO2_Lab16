@@ -38,9 +38,24 @@ typedef void (Controller::*commandMethodDef)();
  */
 struct Command {
 public:
+    /**
+     * The char used for the command.
+     */
     char cmd;
+
+    /**
+     * The method used by the command.
+     */
     commandMethodDef commandMethod;
+
+    /**
+     * The reverse method used by the command.
+     */
     commandMethodDef commandReverseMethod;
+
+    /**
+     * The bool deciding it the command increases the turn.
+     */
     bool increaseTurn;
 
     /**
@@ -69,29 +84,44 @@ public:
  */
 class Controller {
 friend class View;
-private:
-    // the turn the user is at
+    /**
+     * The turn the user is at.
+     */
     unsigned short int turn = 0;
 
-    // Model used by the controller
+    /**
+     * Model used by the controller.
+     */
     Model model;
 
-    // View used by the controller
+    /**
+     * View used by the controller.
+     */
     const View view;
 
-    // command list
+    /**
+     * Command list.
+     */
     std::list<Command> commands;
 
-    // rule list
+    /**
+     * Rule list.
+     */
     std::list<Rule> rules;
 
-    // last command entered by the user
+    /**
+     * Last command entered by the user.
+     */
     std::string cmd;
 
-    // booleans exit and error
+    /**
+     * Booleans exit and error.
+     */
     bool exit = false, error = false;
 
-    // the message to display
+    /*
+     * The message to display.
+     */
     std::string msg;
 
 public:
@@ -118,12 +148,12 @@ public:
 
     void showMenu();
     void display();
-    void messageDisplay(std::string msg);
-    void turnDisplay(unsigned short int turn);
+    void messageDisplay();
+    void turnDisplay();
 
     void embark(const std::string &person);
     void debark(const std::string &person);
-    void move(Boat *boat, Bank *left, Bank *right);
+    void move();
     void nextTurn();
 
     void reinit();
