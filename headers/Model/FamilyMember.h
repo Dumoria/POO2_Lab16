@@ -27,9 +27,6 @@ protected:
     FamilyMember(std::string name, bool gender): Person(name), gender(gender){
     }
 
-public:
-
-
 
 };
 

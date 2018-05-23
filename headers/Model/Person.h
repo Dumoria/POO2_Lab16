@@ -31,7 +31,6 @@ protected:
 
 public:
 
-
     std::string getName(){
         return name;
     }
