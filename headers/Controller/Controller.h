@@ -130,4 +130,5 @@ public:
     void quit();
 };
 
+
 #endif //POO2_LABO4_GOBET_THOMAS_CONTROLLER_H

@@ -19,11 +19,8 @@ Remark(s)   : -
 #include "Person.h"
 
 class FamilyMember : public Person{
-protected:
-
+public:
     FamilyMember(std::string name, Gender gender): Person(std::move(name), gender) {};
-
-
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_FAMILYMEMBER_H

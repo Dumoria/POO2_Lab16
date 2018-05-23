@@ -21,10 +21,8 @@ Remark(s)   : -
 
 
 class Parent : public FamilyMember{
-
 public:
     Parent(std::string name, Gender gender) : FamilyMember(std::move(name), gender) {_canDrive = true;};
-
 };
 
 #endif //POO2_LABO4_GOBET_THOMAS_COP_H

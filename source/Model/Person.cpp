@@ -14,6 +14,12 @@ Remark(s)   : -
 
 #include "../../headers/Model/Person.h"
 
+explicit Person::Person(std::string name) : name(std::move(name)) {};
+
+Person::Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
+
+Person::Person(Person &p) : name(p.name), gender(p.gender), _canDrive(p._canDrive) {};
+
 bool Person::operator==(const Person& o) const {
     return this == &o;
 }
@@ -47,3 +53,15 @@ std::ostream& operator << (std::ostream& os, const Person* person) {
     os << person->name;
     return os;
 };
+
+std::string Person::getName(){
+    return name;
+}
+
+Gender Person::getGender() {
+    return gender;
+}
+
+bool Person::canDrive()const {
+    return _canDrive;
+}

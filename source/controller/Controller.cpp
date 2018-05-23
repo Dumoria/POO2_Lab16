@@ -210,7 +210,6 @@ bool daughterFatherNoMother(Container *container, const std::string &cmd) {
 
         if ((dynamic_cast<Parent*>(p)) != nullptr && p->getGender() == F)
             mother = true;
-
     }
 
     return (daughter && father && !mother);

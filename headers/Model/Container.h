@@ -32,7 +32,6 @@ public:
     explicit Container(std::string name) : name(std::move(name)) {};
     Container(std::string& name, std::initializer_list<Person*> args);
     virtual ~Container();
-    static bool deleteAll(Person* p);
 
     std::list<Person*> getPeople();
     const std::list<Person*> getPeople() const;

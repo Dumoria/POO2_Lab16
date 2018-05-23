@@ -30,9 +30,9 @@ protected:
     bool _canDrive = true;
 
 public:
-    explicit Person(std::string name) : name(std::move(name)) {};
-    Person(std::string name, Gender gender) : name(std::move(name)), gender(gender) {};
-    Person(Person &p) : name(p.name), gender(p.gender), _canDrive(p._canDrive) {};
+    explicit Person(std::string name);
+    Person(std::string name, Gender gender);
+    Person(Person &p);
     virtual ~Person() {};
 
     bool operator==(const Person &o) const;

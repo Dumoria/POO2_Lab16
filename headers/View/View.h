@@ -33,51 +33,23 @@ class View{
     Model model;
 
 public:
-    explicit View(const Model &model) : model(model) {};
+    explicit View(const Model &model);
 
-    void initialDisplay() const {
-        menuDisplay();
-        display();
-    }
+    void initialDisplay() const;
 
-    void menuDisplay() const {
-        std::cout << MENU << std::endl;
-    }
+    void menuDisplay() const;
 
-    void display() const {
-        bankDisplay(model.left);
-        riverDisplay();
-        bankDisplay(model.right);
-    }
+    void display() const;
 
-    void turnDisplay(short unsigned int turn) const {
-        std::cout << std::endl << turn << "> ";
-    }
+    void turnDisplay(short unsigned int turn) const;
 
-    void bankDisplay(Bank *bank) const {
-        std::cout << DELIM_LINE << std::endl;
-        std::cout << bank << std::endl;
-        std::cout << DELIM_LINE << std::endl;
-    }
+    void bankDisplay(Bank *bank) const;
 
-    void riverDisplay() const {
-        boatDisplay(model.left);
-        std::cout << DELIM_LINE_THICK << std::endl;
-        boatDisplay(model.right);
-    }
+    void riverDisplay() const;
 
-    void boatDisplay(Bank *bank) const {
-        if (model.boat->getCurrentBank() == bank) {
-            std::cout << model.boat << std::endl;
-        } else {
-            std::cout << std::endl;
-        }
-    }
+    void boatDisplay(Bank *bank) const;
 
-    void messageDisplay(std::string &msg) const {
-        std::cout << "### " << msg << std::endl;
-    }
-
+    void messageDisplay(std::string &msg) const;
 };
 
 

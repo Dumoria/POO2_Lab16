@@ -21,7 +21,6 @@ Remark(s)   : -
 
 
 class Cop : public Person{
-
 public:
     explicit Cop(std::string name): Person(std::move(name)) {_canDrive = true;};
     Cop(std::string name, Gender gender): Person(std::move(name), gender) {_canDrive = true;};
