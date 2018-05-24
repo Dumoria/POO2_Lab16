@@ -14,7 +14,7 @@ Remark(s)   : -
 
 #include "../../headers/View/View.h"
 
-View::View(const Model &model) : model(model) {};
+View::View(Model* model) : model(model) {};
 
 void View::initialDisplay() const {
     menuDisplay();
@@ -26,9 +26,9 @@ void View::menuDisplay() const {
 }
 
 void View::display() const {
-    bankDisplay(model.left);
+    bankDisplay(model->left);
     riverDisplay();
-    bankDisplay(model.right);
+    bankDisplay(model->right);
 }
 
 void View::turnDisplay(short unsigned int turn) const {
@@ -42,14 +42,14 @@ void View::bankDisplay(Bank *bank) const {
 }
 
 void View::riverDisplay() const {
-    boatDisplay(model.left);
+    boatDisplay(model->left);
     std::cout << DELIM_LINE_THICK << std::endl;
-    boatDisplay(model.right);
+    boatDisplay(model->right);
 }
 
 void View::boatDisplay(Bank *bank) const {
-    if (model.boat->getCurrentBank() == bank) {
-        std::cout << model.boat << std::endl;
+    if (model->boat->getCurrentBank() == bank) {
+        std::cout << model->boat << std::endl;
     } else {
         std::cout << std::endl;
     }

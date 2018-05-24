@@ -26,7 +26,7 @@ int main() {
     std::string cmd;
 
     Model model;
-    View view(model);
+    View view(&model);
     Controller controller(model, view);
 
     while (!exit) {

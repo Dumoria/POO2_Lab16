@@ -29,10 +29,10 @@ const std::string MENU = "p\t\t: afficher\ne <nom>\t\t: embarquer <nom>\nd <nom>
 
 class View {
     friend class Model;
-    Model model;
+    Model* model;
 
 public:
-    explicit View(const Model &model);
+    explicit View(Model* model);
 
     void initialDisplay() const;
 
