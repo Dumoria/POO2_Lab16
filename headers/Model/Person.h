@@ -20,14 +20,14 @@ Remark(s)   : -
 #include <string>
 #include <utility>
 
-enum Gender {F, M};
+enum Gender {F, M};             //All the REAL gender
 
 class Person {
     friend class Container;
 protected:
-    std::string name;
-    Gender gender = M;
-    bool _canDrive = true;
+    std::string name;           //The name of the person
+    Gender gender = M;          //The gender of the person
+    bool _canDrive = true;      //Represent if the person can drive or not
 
 public:
     explicit Person(std::string name);

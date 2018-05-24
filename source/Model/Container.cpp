@@ -48,20 +48,35 @@ Container& Container::operator=(const Container& o) {
     return *this;
 }
 
+/**
+ * Store a list of Person in the container
+ * @param args the list of people to store
+ */
 void Container::push_back(std::initializer_list<Person*> args) {
     for (const auto &arg : args) {
         people.push_back(arg);
     }
 }
 
+/**
+ * Store a Person in the container
+ * @param person the person to store
+ */
 void Container::push_back(Person *person) {
     people.push_back(person);
 }
 
+/**
+ * Remove someone from the container
+ * @param person the person to remove
+ */
 void Container::remove(Person *person) {
     people.remove(person);
 }
 
+/**
+ * Clear the container
+ */
 void Container::clear() {
     people.clear();
 }

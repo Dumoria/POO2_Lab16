@@ -22,11 +22,19 @@ Bank* Boat::getCurrentBank() {
     return currentBank;
 }
 
+/**
+ * Embark someone on the boat
+ * @param person the person to embark
+ */
 void Boat::embark(Person *person) {
     push_back(person);
     currentBank->remove(person);
 }
 
+/**
+ * Debark someone on the boat
+ * @param person the person to debark
+ */
 void Boat::debark(Person* person) {
     currentBank->push_back(person);
     remove(person);

@@ -8,17 +8,14 @@ Class       : POO - A
 
 Goal        :
 
-Remark(s)   : -
+Remark(s)   : Main class of the programm
 ----------------------------------------------------------------------------------------
 */
 
 #include <string>
 #include <iostream>
-#include "headers/Controller/Controller.h"
-#include "headers/model/Parent.h"
-#include "headers/Model/Child.h"
-#include "headers/Model/Cop.h"
-#include "headers/Model/Thief.h"
+#include "../headers/Controller/Controller.h"
+
 
 int main() {
 

@@ -4,7 +4,6 @@ project(POO2_lab16)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(POO2_lab16
-        main.cpp
         headers/Controller/Controller.h
         headers/Model/Bank.h
         headers/Model/Boat.h
@@ -23,4 +22,5 @@ add_executable(POO2_lab16
         source/Model/Container.cpp
         source/Model/Person.cpp
         source/Model/Rule.cpp
-        source/View/View.cpp)
+        source/View/View.cpp
+        source/main.cpp)

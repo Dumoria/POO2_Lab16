@@ -27,10 +27,11 @@ class Model{
     friend class View;
     friend class Controller;
 
-    Bank* left;
-    Bank* right;
-    Boat* boat;
+    Bank* left;         //The left bank
+    Bank* right;        //The right bank
+    Boat* boat;         //The boat
 
+    //All the people present
     Parent *pere, *mere;
     Child *paul, *pierre, *julie, *jeanne;
     Cop *policier;
@@ -57,6 +58,9 @@ public:
         delete boat;
     }
 
+    /**
+     * Populate the model with new data
+     */
     void populate() {
         pere = new Parent("pere", M);
         mere = new Parent("mere", F);
@@ -80,6 +84,9 @@ public:
         return boat;
     }
 
+    /**
+     * Reinitialize the model
+     */
     void reinit() {
         left->clear();
         right->clear();
@@ -88,18 +95,6 @@ public:
         populate();
         left->push_back({pere, mere, paul, pierre, julie, jeanne, policier, voleur});
     }
-
-    //void setRightBank(Bank bank){
-    //    right = bank;
-    //}
-//
-    //void setLeftBank(Bank bank){
-    //    left = bank;
-    //}
-//
-    //void setBoat(Boat boat){
-    //    this->boat = boat;
-    //}
 
 };
 

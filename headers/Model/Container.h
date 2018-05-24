@@ -23,9 +23,9 @@ Remark(s)   : -
 class Container {
     friend class Person;
 protected:
-    std::string name;
-    std::list<Person*> people;
-    unsigned short max = 0;
+    std::string name;           //The name of the container
+    std::list<Person*> people;  //The people that are currently in the container
+    unsigned short max = 0;     //The maximum number of people that the container can stock
 
 public:
     Container() {};
@@ -36,9 +36,28 @@ public:
     std::list<Person*> getPeople();
     const std::list<Person*> getPeople() const;
     const unsigned short getMax() const;
+
+    /**
+     * Store a list of Person in the container
+     * @param args the list of people to store
+     */
     void push_back(std::initializer_list<Person*> args);
+
+    /**
+     * Store a Person in the container
+     * @param person the person to store
+     */
     void push_back(Person *person);
+
+    /**
+     * Remove someone from the container
+     * @param person the person to remove
+     */
     void remove(Person *person);
+
+    /**
+     * Clear the container
+     */
     void clear();
 
     Container& operator=(const Container& o);

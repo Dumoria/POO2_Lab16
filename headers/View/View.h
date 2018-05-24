@@ -29,25 +29,53 @@ const std::string MENU = "p\t\t: afficher\ne <nom>\t\t: embarquer <nom>\nd <nom>
 
 class View {
     friend class Model;
-    Model* model;
+    Model* model;                   //Model to display
 
 public:
     explicit View(Model* model);
 
+    /**
+     * Initialize the displayer
+     */
     void initialDisplay() const;
 
+    /**
+     * Display the menu
+     */
     void menuDisplay() const;
 
+    /**
+     * Display the river and the banks
+     */
     void display() const;
 
+    /**
+     * Display the turn
+     * @param turn the turn to display
+     */
     void turnDisplay(short unsigned int turn) const;
 
+    /**
+     * Display a bank
+     * @param bank the bank to display
+     */
     void bankDisplay(Bank *bank) const;
 
+    /**
+     * Display the river
+     */
     void riverDisplay() const;
 
+    /**
+     * Display the boat
+     * @param bank the bank on which the boat is docked
+     */
     void boatDisplay(Bank *bank) const;
 
+    /**
+     * Display a message
+     * @param msg the message to display
+     */
     void messageDisplay(std::string &msg) const;
 };
 

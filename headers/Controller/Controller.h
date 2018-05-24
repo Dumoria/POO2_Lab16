@@ -38,25 +38,11 @@ typedef void (Controller::*commandMethodDef)();
  */
 struct Command {
 public:
-    /**
-     * The char used for the command.
-     */
-    char cmd;
 
-    /**
-     * The method used by the command.
-     */
-    commandMethodDef commandMethod;
-
-    /**
-     * The reverse method used by the command.
-     */
-    commandMethodDef commandReverseMethod;
-
-    /**
-     * The bool deciding it the command increases the turn.
-     */
-    bool increaseTurn;
+    char cmd;                                       //The char used for the command.
+    commandMethodDef commandMethod;                 //The method used by the command.
+    commandMethodDef commandReverseMethod;          //The reverse method used by the command.
+    bool increaseTurn;                              //The bool deciding it the command increases the turn.
 
     /**
      * Command constructor.
@@ -85,45 +71,15 @@ public:
 
 class Controller {
 friend class View;
-    /**
-     * The turn the user is at.
-     */
-    unsigned short int turn = 0;
 
-    /**
-     * Model used by the controller.
-     */
-    Model* model;        //possible double destruction from here. Try to destruct member of controller but since it is reference to the same, doube destr people
-
-    /**
-     * View used by the controller.
-     */
-    View* view;
-
-    /**
-     * Command list.
-     */
-    std::list<Command> commands;
-
-    /**
-     * Rule list.
-     */
-    std::list<Rule> rules;
-
-    /**
-     * Last command entered by the user.
-     */
-    std::string cmd;
-
-    /**
-     * Booleans exit and error.
-     */
-    bool exit = false, error = false;
-
-    /**
-     * The message to display.
-     */
-    std::string msg;
+    unsigned short int turn = 0;        //The turn the user is at.
+    Model* model;                       //Model used by the controller.
+    View* view;                         //View used by the controller.
+    std::list<Command> commands;        //Command list.
+    std::list<Rule> rules;              //Rule list.
+    std::string cmd;                    //Last command entered by the user.
+    bool exit = false, error = false;   //Booleans exit and error.
+    std::string msg;                    //The message to display.
 
 public:
 

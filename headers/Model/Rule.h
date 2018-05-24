@@ -21,17 +21,25 @@ Remark(s)   : -
 
 typedef bool (*ruleFunctionDef)(Container *container, const std::string &s);
 
+
 class Rule {
-    char command;
-    bool before;
-    bool container;
-    ruleFunctionDef ruleFunction;
-    std::string errorMessage;
+    char command;                   //Char that drive the rule check
+    bool before;                    //Indicate if the rule need to be tested before or after the command's application
+    bool container;                 //Indicate if the rule is linked to the boat or the banks
+    ruleFunctionDef ruleFunction;   //The function to test to know if the rule is respected or not
+    std::string errorMessage;       //The message to print if there is an error
 
 public:
     Rule(const char &command, bool before, bool container, ruleFunctionDef ruleFunction, const std::string &errorMessage);
 
+    /**
+     * Check wether or not the rule is respected
+     * @param container the container to check
+     * @param cmd the command that results in the rule verification
+     * @return a bool to indicate if the rule is respected or not
+     */
     bool checkRule(Container *container, const std::string &cmd);
+
     char getCommand();
     bool getBefore();
     bool getContainer();
