@@ -43,10 +43,6 @@ public:
     };
 
     ~Model() {
-        destruct();
-    }
-
-    void destruct() {
         delete pere;
         delete mere;
         delete paul;
@@ -55,6 +51,7 @@ public:
         delete jeanne;
         delete policier;
         delete voleur;
+
         delete left;
         delete right;
         delete boat;

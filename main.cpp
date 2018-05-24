@@ -21,6 +21,7 @@ Remark(s)   : -
 #include "headers/Model/Thief.h"
 
 int main() {
+
     bool exit = false;
     std::string cmd;
 

@@ -25,7 +25,6 @@ Remark(s)   : -
 Controller::Controller(const Model &model, const View &view) : model(model), view(view) {
     view.initialDisplay();
     turnDisplay();
-
     setCommands();
     setRules();
 };
@@ -274,8 +273,9 @@ const bool Controller::command() {
 
     // browses the command list
     for (auto command : commands) {
-        if (cmd.at(0) == command.cmd && (cmd.length() == 1 || cmd.at(1) == ' ')) {
+        if (!cmd.empty() && cmd.at(0) == command.cmd && (cmd.length() == 1 || cmd.at(1) == ' ')) {
             checkRules(true);
+
             if (!error) {
                 // if no error, use the main command method
                 (this->*command.commandMethod)();
@@ -307,9 +307,9 @@ const bool Controller::command() {
             messageDisplay();
         }
         turnDisplay();
-    } else {
-        model.destruct();
-    }
+    }/* else {
+        model.destruct();   //pas besoin de détruire expli model, appel auto au destru en fin. Pour allocation dynamique => new (directement, pas zone pointée où on a fait new), alors delete
+    }*/
 
     return exit;
 }

@@ -82,6 +82,7 @@ public:
 /**
  * Controller class.
  */
+
 class Controller {
 friend class View;
     /**
@@ -92,7 +93,7 @@ friend class View;
     /**
      * Model used by the controller.
      */
-    Model model;
+    Model model;        //possible double destruction from here. Try to destruct member of controller but since it is reference to the same, doube destr people
 
     /**
      * View used by the controller.
@@ -125,11 +126,33 @@ friend class View;
     std::string msg;
 
 public:
+
+    /**
+     * Controller constructor.
+     * @param model the model used by the controller
+     * @param view the view used by the controller
+     */
     Controller(const Model &model, const View &view);
 
+    /**
+     * Sets the last entered cmd.
+     * @param cmd the string entered as a command
+     */
     void setCmd(const std::string& cmd);
 
+    /**
+     * Sets the command list.
+     * Allows to add quickly a command to the controller.
+     * @see     Command
+     */
     void setCommands();
+
+    /** --------------------------- methods used in setCommands -------------------------- **/
+
+    /**
+     * All methods linked to set up commands.
+     */
+
     void commandP();
     void commandE();
     void commandEReverse();
@@ -141,6 +164,7 @@ public:
     void commandH();
     void commandQ();
 
+/** -------------------------------------- **/
     void setRules();
 
     const bool command();
