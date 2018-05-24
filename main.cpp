@@ -27,7 +27,7 @@ int main() {
 
     Model model;
     View view(&model);
-    Controller controller(model, view);
+    Controller controller(&model, &view);
 
     while (!exit) {
         std::getline(std::cin, cmd);

@@ -93,12 +93,12 @@ friend class View;
     /**
      * Model used by the controller.
      */
-    Model model;        //possible double destruction from here. Try to destruct member of controller but since it is reference to the same, doube destr people
+    Model* model;        //possible double destruction from here. Try to destruct member of controller but since it is reference to the same, doube destr people
 
     /**
      * View used by the controller.
      */
-    View view;
+    View* view;
 
     /**
      * Command list.
@@ -132,7 +132,7 @@ public:
      * @param model the model used by the controller
      * @param view the view used by the controller
      */
-    Controller(const Model &model, const View &view);
+    Controller(Model* model, View* view);
 
     /**
      * Sets the last entered cmd.

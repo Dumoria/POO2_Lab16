@@ -22,8 +22,8 @@ Remark(s)   : -
  * @param   model   the model used by the controller
  * @param   view    the view used by the controller
  */
-Controller::Controller(const Model &model, const View &view) : model(model), view(view) {
-    view.initialDisplay();
+Controller::Controller(Model* model, View* view) : model(model), view(view) {
+    view->initialDisplay();
     turnDisplay();
     setCommands();
     setRules();
@@ -268,8 +268,8 @@ void Controller::setRules() {
 const bool Controller::command() {
     bool foundCmd = false;
     error = false;
-    std::list<Person*> bankPeople = model.boat->getCurrentBank()->getPeople(),
-            boatPeople = model.boat->getPeople();
+    std::list<Person*> bankPeople = model->boat->getCurrentBank()->getPeople(),
+            boatPeople = model->boat->getPeople();
 
     // browses the command list
     for (auto command : commands) {
@@ -307,9 +307,7 @@ const bool Controller::command() {
             messageDisplay();
         }
         turnDisplay();
-    }/* else {
-        model.destruct();   //pas besoin de détruire expli model, appel auto au destru en fin. Pour allocation dynamique => new (directement, pas zone pointée où on a fait new), alors delete
-    }*/
+    }
 
     return exit;
 }
@@ -324,9 +322,9 @@ void Controller::checkRules(bool before) {
         if (cmd.at(0) == rule.getCommand() && (rule.getBefore() == before)) {
             Container *container;
             if (rule.getContainer()) {
-                container = model.boat;
+                container = model->boat;
             } else {
-                container = model.boat->getCurrentBank();
+                container = model->boat->getCurrentBank();
             }
 
             error = rule.checkRule(container, cmd);
@@ -342,14 +340,14 @@ void Controller::checkRules(bool before) {
  * Displays the command menu.
  */
 void Controller::showMenu(){
-    view.menuDisplay();
+    view->menuDisplay();
 }
 
 /**
  * Displays the current model state.
  */
 void Controller::display() {
-    view.display();
+    view->display();
 }
 
 /**
@@ -358,7 +356,7 @@ void Controller::display() {
  * @param   msg   the message to display
  */
 void Controller::messageDisplay() {
-    view.messageDisplay(msg);
+    view->messageDisplay(msg);
 }
 
 /**
@@ -367,7 +365,7 @@ void Controller::messageDisplay() {
  * @param   cmd   the string entered as a command
  */
 void Controller::turnDisplay() {
-    view.turnDisplay(turn);
+    view->turnDisplay(turn);
 }
 
 /**
@@ -376,9 +374,9 @@ void Controller::turnDisplay() {
  * @param   person   the person name to embark
  */
 void Controller::embark(const std::string &person) {
-    std::list<Person*> bankPeople = model.boat->getCurrentBank()->getPeople();
+    std::list<Person*> bankPeople = model->boat->getCurrentBank()->getPeople();
     auto it = find(bankPeople.begin(), bankPeople.end(), cmd.substr(2));
-    model.boat->embark(*it);
+    model->boat->embark(*it);
 }
 
 /**
@@ -387,16 +385,16 @@ void Controller::embark(const std::string &person) {
  * @param   person   the person name to debark
  */
 void Controller::debark(const std::string &person) {
-    std::list<Person*> boatPeople = model.boat->getPeople();
+    std::list<Person*> boatPeople = model->boat->getPeople();
     auto it = find(boatPeople.begin(), boatPeople.end(), cmd.substr(2));
-    model.boat->debark(*it);
+    model->boat->debark(*it);
 }
 
 /**
  * Moves the boat to the other bank.
  */
 void Controller::move() {
-    model.boat->setCurrentBank(model.boat->getCurrentBank() == model.left ? model.right : model.left);
+    model->boat->setCurrentBank(model->boat->getCurrentBank() == model->left ? model->right : model->left);
 }
 
 /**
@@ -411,7 +409,7 @@ void Controller::nextTurn() {
  */
 void Controller::reinit() {
     turn = 0;
-    model.reinit();
+    model->reinit();
 }
 
 /**
